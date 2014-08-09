@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{4FF5CAE6-DC29-AA5D-83B1-CED2D3FADABD}</ProjectGuid>
+	<ProjectGuid>{F0C5D129-C642-3543-6758-6C6040C9271C}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -47,10 +47,15 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Ouya\SDK\Scripts\OuyaGameObject.cs" />
+     <Compile Include="Assets\Scripts\AppList.cs" />
      <Compile Include="Assets\Scripts\FramerateCounter.cs" />
+     <Compile Include="Assets\Scripts\Initialize.cs" />
      <Compile Include="Assets\Scripts\Interface.cs" />
+     <Compile Include="Assets\Scripts\Language.cs" />
+     <Compile Include="Assets\Scripts\Language\LanguageDutch.cs" />
+     <Compile Include="Assets\Scripts\Language\LanguageFrench.cs" />
      <Compile Include="Assets\Scripts\Settings.cs" />
-     <Compile Include="Assets\Scripts\Settings\Wifi.cs" />
+     <Compile Include="Assets\Scripts\Settings\SettingsInterface.cs" />
      <Compile Include="Assets\Scripts\ZoomAnimation.cs" />
      <None Include="Assets\Plugins\Android\res\values\strings.xml" />
      <None Include="Assets\Plugins\Android\res\layout\main.xml" />
@@ -58,7 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass-vs.csproj">
-      <Project>{A3D88D00-AE76-4994-987C-0C88CEA56501}</Project>      <Name>Assembly-CSharp-firstpass-vs</Name>    </ProjectReference>
+      <Project>{F5440D28-BC8A-2162-0045-226DD937235A}</Project>      <Name>Assembly-CSharp-firstpass-vs</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
