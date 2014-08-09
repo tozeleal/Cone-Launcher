@@ -1,4 +1,4 @@
-Cone-Launcher
+Cone Launcher
 =============
 
 An alternative launcher for OUYA in the early stages of development
