@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Initialize : MonoBehaviour {
+public class Init : MonoBehaviour {
 	void Start () {
 		Application.LoadLevel("Launcher");
 	}

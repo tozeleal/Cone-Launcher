@@ -72,4 +72,60 @@ public class LanguageDutch : Language {
 			return "updates";
 		}
 	}
+
+	public override string connect
+	{
+		get {
+			return "verbind";
+		}
+	}
+	
+	public override string rescan
+	{
+		get {
+			return "opniew scannen";
+		}
+	}
+	
+	public override string back
+	{
+		get {
+			return "terug";
+		}
+	}
+	
+	public override string options
+	{
+		get {
+			return "opties";
+		}
+	}
+	
+	public override string open
+	{
+		get {
+			return "open";
+		}
+	}
+	
+	public override string rate
+	{
+		get {
+			return "beoordeel";
+		}
+	}
+	
+	public override string unstall
+	{
+		get {
+			return "verwijder";
+		}
+	}
+	
+	public override string more
+	{
+		get {
+			return "meer";
+		}
+	}
 }

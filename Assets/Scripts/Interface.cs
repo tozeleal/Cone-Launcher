@@ -3,23 +3,26 @@ using System.Collections;
 
 public class Interface : MonoBehaviour, OuyaSDK.IFetchGamerInfoListener {
 
-	public static string userName = "Loading";
+	public static string userName = "'_'";
 
-	void Awake () {
+	public GameObject init;
+
+	IEnumerator Start () {
+		if (Settings.aButton == null)
+			Instantiate (init);
+
 		OuyaSDK.registerFetchGamerInfoListener(this);
 
-		StartCoroutine (Prepare ());
+		Application.targetFrameRate = 60;
+
+		yield return new WaitForSeconds (0.5f);
 
 		Settings.guiSkin.box.fontSize = Mathf.RoundToInt(Screen.width*0.02f);
-	}
-
-	IEnumerator Prepare() {
-		yield return new WaitForSeconds (1);
+		Settings.guiSkin.box.normal.textColor = new Color (1, 1, 1, .75f);
+		
 		OuyaSDK.fetchGamerInfo();
 
-		Settings.guiSkin.box.normal.textColor = new Color (1, 1, 1, .75f);
-
-		Application.targetFrameRate = 60;
+		yield return null;
 	}
 
 	void OnDestroy()
@@ -39,17 +42,17 @@ public class Interface : MonoBehaviour, OuyaSDK.IFetchGamerInfoListener {
 
 		GUI.Box (new Rect (Screen.width * 0.3f, Screen.height * 0.885f, Screen.width * 0.05f, Screen.width * 0.05f),
 		         Settings.oButton);
-		GUI.Box (new Rect (Screen.width * 0.35f, Screen.height * 0.885f, Screen.width * 0.07f, Screen.width * 0.05f),
+		GUI.Box (new Rect (Screen.width * 0.35f, Screen.height * 0.885f, Screen.width * 0.1f, Screen.width * 0.05f),
 		         Settings.lang.open.ToUpper());
 		
 		GUI.Box (new Rect (Screen.width * 0.45f, Screen.height * 0.885f, Screen.width * 0.05f, Screen.width * 0.05f),
 		         Settings.uButton);
-		GUI.Box (new Rect (Screen.width * 0.5f, Screen.height * 0.885f, Screen.width * 0.06f, Screen.width * 0.05f),
+		GUI.Box (new Rect (Screen.width * 0.5f, Screen.height * 0.885f, Screen.width * 0.1f, Screen.width * 0.05f),
 		         Settings.lang.rate.ToUpper());
 		
 		GUI.Box (new Rect (Screen.width * 0.6f, Screen.height * 0.885f, Screen.width * 0.05f, Screen.width * 0.05f),
 		         Settings.yButton);
-		GUI.Box (new Rect (Screen.width * 0.65f, Screen.height * 0.885f, Screen.width * 0.1f, Screen.width * 0.05f),
+		GUI.Box (new Rect (Screen.width * 0.65f, Screen.height * 0.885f, Screen.width * 0.2f, Screen.width * 0.05f),
 		         Settings.lang.unstall.ToUpper());
 
 		Settings.guiSkin.box.alignment = TextAnchor.MiddleCenter;

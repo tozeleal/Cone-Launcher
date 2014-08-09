@@ -31,7 +31,7 @@ public class Settings : MonoBehaviour {
 		ouyaLogo = ouyaLogoPublic;
 		guiSkin = guiSkinPublic;
 
-		lang = SetLanguage("dutch");
+		lang = SetLanguage("");
 
 		settings.Add (lang.wifi);
 		settings.Add(lang.bluetooth);
