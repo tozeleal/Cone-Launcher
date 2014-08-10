@@ -16,12 +16,13 @@ public class TilesInterface : MonoBehaviour {
 
 	public List<string> apps = new List<string>();
 
-	public static List<GameObject> rowA = new List<GameObject>();
-	public static List<GameObject> rowB = new List<GameObject>();
-	public static List<GameObject> rowC = new List<GameObject>();
+	// public static List<GameObject> rowA = new List<GameObject>();
+	// public static List<GameObject> rowB = new List<GameObject>();
+	// public static List<GameObject> rowC = new List<GameObject>();
 
-	public static List<GameObject> currentRow;
-	public static int currentRowNumber;
+	public static List<List<GameObject>> columns = new List<List<GameObject>>();
+	
+	public static int currentRow;
 	public static int currentColumn;
 
 	private bool horizontalAxisDown;
@@ -33,64 +34,56 @@ public class TilesInterface : MonoBehaviour {
 
 	void Awake() {
 		// Standard Apps
-		rowA.Add(store.gameObject);
-		rowA.Add(featured.gameObject);
-		rowA.Add(files.gameObject);
+		columns.Add (new List<GameObject> (){
+			store.gameObject,
+			favorites.gameObject,
+			settings.gameObject
+		});
 
-		rowB.Add(favorites.gameObject);
-		rowB.Add(develop.gameObject);
-		rowB.Add(youtube.gameObject);
+		columns.Add (new List<GameObject> (){
+			featured.gameObject,
+			develop.gameObject,
+			browser.gameObject
+		});
 
-		rowC.Add(settings.gameObject);
-		rowC.Add(browser.gameObject);
-		rowC.Add(videos.gameObject);
+		columns.Add (new List<GameObject> (){
+			files.gameObject,
+			youtube.gameObject,
+			videos.gameObject
+		});
 
 		// TODO Other Apps
 
 		// Set Cursor Position
-		currentRowNumber = 0;
-		currentRow = rowA;
-		cursor = currentRow[currentColumn];
+		currentRow = 0;
+		currentColumn = 0;
+		cursor = columns[currentColumn][currentRow];
 		StartCoroutine( ZoomAnimation.Zoom (cursor));
 	}
 
 	void Update () {
 		if (InputManager.GetAxis("Vertical",0) > 0.5f && !verticalAxisDown) {
-			if (currentRowNumber == 0) {
-				currentRow = rowC;
-				currentRowNumber = 2;
-			}
-			if (currentRowNumber == 1) {
-				currentRow = rowA;
-				currentRowNumber = 0;
-			}
-			if (currentRowNumber == 2) {
-				currentRow = rowB;
-				currentRowNumber = 1;
-			}
+			currentRow --;
 
-			verticalAxisDown = true;
+			if (currentRow < 0) {
+				currentRow = columns[currentColumn].Count - 1;
+			}
 
 			ChangeCursor();
+
+			verticalAxisDown = true;
 		}
 
 		if (InputManager.GetAxis("Vertical",0) < -0.5f && !verticalAxisDown) {
-			if (currentRowNumber == 0) {
-				currentRow = rowB;
-				currentRowNumber = 1;
+			currentRow ++;
+
+			if (currentRow > columns[currentColumn].Count) {
+				currentRow = 0;
 			}
-			if (currentRowNumber == 1) {
-				currentRow = rowC;
-				currentRowNumber = 2;
-			}
-			if (currentRowNumber == 2) {
-				currentRow = rowA;
-				currentRowNumber = 0;
-			}
-			
-			verticalAxisDown = true;
-			
+
 			ChangeCursor();
+
+			verticalAxisDown = true;
 		}
 
 		if (InputManager.GetAxis("Vertical",0) < 0.25f &&
@@ -99,7 +92,7 @@ public class TilesInterface : MonoBehaviour {
 		}
 
 		if (InputManager.GetAxis("Horizontal",0) > 0.5f && !horizontalAxisDown) {
-			if (currentColumn < currentRow.Count - 1) {
+			if (currentColumn < columns.Count - 1) {
 				currentColumn ++;
 				ChangeCursor();
 			}
@@ -121,12 +114,12 @@ public class TilesInterface : MonoBehaviour {
 			horizontalAxisDown = false;
 		}
 
-		Debug.Log ("Row: " + currentRowNumber + "  Column" + currentColumn);
+		Debug.Log ("Row: " + currentRow + "  Column" + currentColumn);
 	}
 
 	void ChangeCursor() {
 		StartCoroutine( ZoomAnimation.ZoomOut (cursor));
-		cursor = currentRow[currentColumn];
+		cursor = columns[currentColumn][currentRow];
 		StartCoroutine( ZoomAnimation.Zoom (cursor));
 	}
 }

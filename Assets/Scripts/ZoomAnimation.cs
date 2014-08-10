@@ -19,7 +19,7 @@ public class ZoomAnimation : MonoBehaviour {
 		                                   -1);
 
 		while (Vector3.Distance(g.transform.localScale, selectedSize) > 0.001f) {
-			g.transform.localScale = Vector3.Lerp(g.transform.localScale, selectedSize, Time.time - startTime);
+			g.transform.localScale = Vector3.Lerp(g.transform.localScale, selectedSize, (Time.time - startTime) * 3);
 			// renderer.material.color = Color.Lerp(renderer.material.color, selectedColor, Time.time - startTime);
 			yield return null;
 		}
@@ -36,7 +36,7 @@ public class ZoomAnimation : MonoBehaviour {
 		                                    0);
 
 		while (Vector3.Distance(g.transform.localScale, unslectedSize) > 0.001f) {
-			g.transform.localScale = Vector3.Lerp(g.transform.localScale, unslectedSize, Time.time - startTime);
+			g.transform.localScale = Vector3.Lerp(g.transform.localScale, unslectedSize, (Time.time - startTime) * 3);
 			// renderer.material.color = Color.Lerp(renderer.material.color, Color.white, Time.time - startTime);
 			yield return null;
 		}
