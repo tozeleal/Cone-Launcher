@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Settings : MonoBehaviour {
+public class Settings : MonoBehaviour, OuyaSDK.IFetchGamerInfoListener {
 	public Texture oButtonPublic;
 	public Texture uButtonPublic;
 	public Texture yButtonPublic;
@@ -23,7 +23,9 @@ public class Settings : MonoBehaviour {
 
 	public static Language lang = new Language();
 
-	void Start () {
+	public static string userName = "'_'";
+
+	IEnumerator Start () {
 		oButton = oButtonPublic;
 		uButton = uButtonPublic;
 		yButton = yButtonPublic;
@@ -43,6 +45,10 @@ public class Settings : MonoBehaviour {
 		settings.Add(lang.updates);
 
 		guiSkin.box.fontSize = Mathf.RoundToInt(Screen.width*0.02f);
+
+		OuyaSDK.registerFetchGamerInfoListener(this);
+		yield return new WaitForSeconds (0.5f);
+		OuyaSDK.fetchGamerInfo();
 	}
 
 	public Language SetLanguage(string language) {
@@ -57,5 +63,26 @@ public class Settings : MonoBehaviour {
 				return new Language();
 			break;
 		}
+	}
+
+	// OUYA Stuff
+	public void OuyaFetchGamerInfoOnSuccess(string gamerUUID, string gamerUserName)
+	{
+		userName = gamerUserName;
+	}
+	
+	public void OuyaFetchGamerInfoOnFailure(int errorCode, string errorMessage)
+	{
+		userName = System.Reflection.MethodBase.GetCurrentMethod().ToString();
+	}
+	
+	public void OuyaFetchGamerInfoOnCancel()
+	{
+		userName = System.Reflection.MethodBase.GetCurrentMethod().ToString();
+	}
+	
+	void OnDestroy()
+	{
+		OuyaSDK.unregisterFetchGamerInfoListener(this);
 	}
 }

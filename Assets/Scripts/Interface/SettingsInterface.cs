@@ -1,16 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SettingsInterface : MonoBehaviour {
+public class SettingsInterface : Interface {
 	void OnGUI() {
-		GUI.skin = Settings.guiSkin;
-		Settings.guiSkin.box.normal.textColor = new Color (1, 1, 1, 0.75f);
+		base.OnGUI ();
 
-		Settings.guiSkin.box.alignment = TextAnchor.MiddleLeft;
 
-		GUI.Box (new Rect (Screen.width * 0.05f, Screen.width* 0.035f, Screen.width * 0.25f, Screen.width * 0.045f),
-		         Settings.lang.hello.ToUpper() + Interface.userName.ToUpper() + "!");
-		
 		GUI.Box (new Rect (Screen.width * 0.15f, Screen.height * 0.885f, Screen.width * 0.05f, Screen.width * 0.05f),
 		         Settings.oButton);
 		GUI.Box (new Rect (Screen.width * 0.2f, Screen.height * 0.885f, Screen.width * 0.15f, Screen.width * 0.05f),
@@ -44,13 +39,5 @@ public class SettingsInterface : MonoBehaviour {
 		}
 		
 		Settings.guiSkin.box.fontSize = Mathf.RoundToInt(Settings.guiSkin.box.fontSize / 4 * 3);
-		
-		Settings.guiSkin.box.alignment = TextAnchor.MiddleCenter;
-		
-		GUI.Box (new Rect (Screen.width * 0.4f, Screen.width* 0.035f, Screen.width * 0.2f, Screen.width * 0.045f),
-		         System.DateTime.Now.ToString("HH:mm"));
-		
-		GUI.Box (new Rect (Screen.width * 0.8f, Screen.width* 0.035f, Screen.width * 0.15f, Screen.width * 0.045f),
-		         Settings.ouyaLogo);
 	}
 }

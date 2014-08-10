@@ -49,13 +49,15 @@
      <Compile Include="Assets\Ouya\SDK\Scripts\OuyaGameObject.cs" />
      <Compile Include="Assets\Scripts\FramerateCounter.cs" />
      <Compile Include="Assets\Scripts\Init.cs" />
+     <Compile Include="Assets\Scripts\InputManager.cs" />
      <Compile Include="Assets\Scripts\Interface.cs" />
+     <Compile Include="Assets\Scripts\Interface\LauncherInterface.cs" />
+     <Compile Include="Assets\Scripts\Interface\SettingsInterface.cs" />
+     <Compile Include="Assets\Scripts\Interface\TilesInterface.cs" />
      <Compile Include="Assets\Scripts\Language.cs" />
      <Compile Include="Assets\Scripts\Language\LanguageDutch.cs" />
      <Compile Include="Assets\Scripts\Language\LanguageFrench.cs" />
      <Compile Include="Assets\Scripts\Settings.cs" />
-     <Compile Include="Assets\Scripts\Settings\SettingsInterface.cs" />
-     <Compile Include="Assets\Scripts\TilesInterface.cs" />
      <Compile Include="Assets\Scripts\ZoomAnimation.cs" />
      <None Include="Assets\Plugins\Android\res\values\strings.xml" />
      <None Include="Assets\Plugins\Android\res\layout\main.xml" />
