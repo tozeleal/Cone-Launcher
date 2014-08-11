@@ -4,7 +4,7 @@ using System.Collections;
 public class SettingsInterface : Interface {
 	void OnGUI() {
 		base.OnGUI ();
-
+		Settings.guiSkin.box.alignment = TextAnchor.MiddleLeft;
 
 		GUI.Box (new Rect (Screen.width * 0.15f, Screen.height * 0.885f, Screen.width * 0.05f, Screen.width * 0.05f),
 		         Settings.oButton);
