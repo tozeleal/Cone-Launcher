@@ -11,8 +11,8 @@ It doesn't do anything yet expect show the animations
 
 Development Progress:
 - Design
+- Getting The Interface Working
 
 TODO;
 - Getting the IO working to load all the OUYA Games and Apps
-- Getting The Interface Working
 - Getting The Settings Working
