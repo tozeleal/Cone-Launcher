@@ -25,14 +25,14 @@ public class Interface : MonoBehaviour {
 
 	public static void TopBar() {
 		Settings.guiSkin.box.alignment = TextAnchor.MiddleLeft;
-		GUI.Box (new Rect (Screen.width * 0.05f, Screen.width* 0.035f, Screen.width * 0.35f, Screen.width * 0.045f),
+		GUI.Box (new Rect (Screen.width * 0.05f, Screen.width* 0.03f, Screen.width * 0.35f, Screen.width * 0.045f),
 		         Settings.lang.hello.ToUpper() + Settings.userName.ToUpper() + "!");
 
 		Settings.guiSkin.box.alignment = TextAnchor.MiddleCenter;
-		GUI.Box (new Rect (Screen.width * 0.4f, Screen.width* 0.035f, Screen.width * 0.2f, Screen.width * 0.045f),
+		GUI.Box (new Rect (Screen.width * 0.4f, Screen.width* 0.03f, Screen.width * 0.2f, Screen.width * 0.045f),
 		         System.DateTime.Now.ToString("HH:mm"));
 		
-		GUI.Box (new Rect (Screen.width * 0.8f, Screen.width* 0.035f, Screen.width * 0.15f, Screen.width * 0.045f),
+		GUI.Box (new Rect (Screen.width * 0.8f, Screen.width* 0.03f, Screen.width * 0.15f, Screen.width * 0.045f),
 		         Settings.ouyaLogo);
 	}
 }

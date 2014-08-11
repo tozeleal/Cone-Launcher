@@ -25,8 +25,7 @@ public class TilesInterface : MonoBehaviour {
 	public static int currentRow;
 	public static int currentColumn;
 
-	private bool horizontalAxisDown;
-	private bool verticalAxisDown;
+	private bool axisDown;
 
 	public static GameObject cursor;
 
@@ -58,11 +57,11 @@ public class TilesInterface : MonoBehaviour {
 		currentRow = 0;
 		currentColumn = 0;
 		cursor = columns[currentColumn][currentRow];
-		StartCoroutine( ZoomAnimation.Zoom (cursor));
+		cursor.transform.localScale = ZoomAnimation.selectedSize;
 	}
 
 	void Update () {
-		if (InputManager.GetAxis("Vertical",0) > 0.5f && !verticalAxisDown) {
+		if (InputManager.GetAxis("Vertical",0) > 0.5f && !axisDown) {
 			currentRow --;
 
 			if (currentRow < 0) {
@@ -71,55 +70,48 @@ public class TilesInterface : MonoBehaviour {
 
 			ChangeCursor();
 
-			verticalAxisDown = true;
-		}
-
-		if (InputManager.GetAxis("Vertical",0) < -0.5f && !verticalAxisDown) {
+			axisDown = true;
+		} else if (InputManager.GetAxis("Vertical",0) < -0.5f && !axisDown) {
 			currentRow ++;
 
-			if (currentRow > columns[currentColumn].Count) {
+			if (currentRow > columns[currentColumn].Count - 1) {
 				currentRow = 0;
 			}
 
 			ChangeCursor();
 
-			verticalAxisDown = true;
-		}
-
-		if (InputManager.GetAxis("Vertical",0) < 0.25f &&
-		    InputManager.GetAxis("Vertical",0) > -0.25f) {
-			verticalAxisDown = false;
-		}
-
-		if (InputManager.GetAxis("Horizontal",0) > 0.5f && !horizontalAxisDown) {
+			axisDown = true;
+		} else if (InputManager.GetAxis("Horizontal",0) > 0.5f && !axisDown) {
 			if (currentColumn < columns.Count - 1) {
 				currentColumn ++;
 				ChangeCursor();
 			}
 
-			horizontalAxisDown = true;
-		}
-		
-		if (InputManager.GetAxis("Horizontal",0) < -0.5f && !horizontalAxisDown) {
+			axisDown = true;
+		} else if (InputManager.GetAxis("Horizontal",0) < -0.5f && !axisDown) {
 			if (currentColumn > 0) {
 				currentColumn --;
 				ChangeCursor();
 			}
 			
-			horizontalAxisDown = true;
+			axisDown = true;
 		}
 		
-		if (InputManager.GetAxis("Horizontal",0) < 0.25f &&
+		if (InputManager.GetAxis("Vertical",0) < 0.25f &&
+		    InputManager.GetAxis("Vertical",0) > -0.25f &&
+		    InputManager.GetAxis("Horizontal",0) < 0.25f &&
 		    InputManager.GetAxis("Horizontal",0) > -0.25f) {
-			horizontalAxisDown = false;
+			axisDown = false;
 		}
 
-		Debug.Log ("Row: " + currentRow + "  Column" + currentColumn);
+
 	}
 
 	void ChangeCursor() {
 		StartCoroutine( ZoomAnimation.ZoomOut (cursor));
 		cursor = columns[currentColumn][currentRow];
 		StartCoroutine( ZoomAnimation.Zoom (cursor));
+
+		LauncherInterface.selection = cursor.GetComponent<LauncherAction>().action;
 	}
 }

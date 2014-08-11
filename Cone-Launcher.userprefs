@@ -1,17 +1,19 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Interface/TilesInterface.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Interface/LauncherInterface.cs">
     <Files>
-      <File FileName="Assets/Scripts/Interface/LauncherInterface.cs" Line="8" Column="17" />
+      <File FileName="Assets/Scripts/LauncherActions/LauncherAction.cs" Line="6" Column="28" />
+      <File FileName="Assets/Scripts/Interface/LauncherInterface.cs" Line="39" Column="42" />
       <File FileName="Assets/Scripts/Settings.cs" Line="28" Column="13" />
-      <File FileName="Assets/Scripts/ZoomAnimation.cs" Line="21" Column="76" />
-      <File FileName="Assets/Scripts/Interface.cs" Line="9" Column="25" />
+      <File FileName="Assets/Scripts/ZoomAnimation.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Interface.cs" Line="20" Column="2" />
       <File FileName="Assets/Scripts/Language.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Language/LanguageDutch.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Language/LanguageFrench.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Init.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Interface/TilesInterface.cs" Line="124" Column="46" />
-      <File FileName="Assets/Scripts/InputManager.cs" Line="26" Column="3" />
+      <File FileName="Assets/Scripts/Interface/TilesInterface.cs" Line="122" Column="43" />
+      <File FileName="Assets/Scripts/InputManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/FramerateCounter.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
