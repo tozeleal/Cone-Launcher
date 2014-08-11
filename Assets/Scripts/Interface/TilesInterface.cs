@@ -61,40 +61,55 @@ public class TilesInterface : MonoBehaviour {
 	}
 
 	void Update () {
-		if (InputManager.GetAxis("Vertical",0) > 0.5f && !axisDown) {
-			currentRow --;
+		if (!axisDown) {
+			if (InputManager.GetAxis("Vertical",0) > 0.5f) {
+				currentRow --;
 
-			if (currentRow < 0) {
-				currentRow = columns[currentColumn].Count - 1;
-			}
+				if (currentRow < 0) {
+					currentRow = columns[currentColumn].Count - 1;
+				}
 
-			ChangeCursor();
-
-			axisDown = true;
-		} else if (InputManager.GetAxis("Vertical",0) < -0.5f && !axisDown) {
-			currentRow ++;
-
-			if (currentRow > columns[currentColumn].Count - 1) {
-				currentRow = 0;
-			}
-
-			ChangeCursor();
-
-			axisDown = true;
-		} else if (InputManager.GetAxis("Horizontal",0) > 0.5f && !axisDown) {
-			if (currentColumn < columns.Count - 1) {
-				currentColumn ++;
 				ChangeCursor();
+
+				axisDown = true;
+			} else if (InputManager.GetAxis("Vertical",0) < -0.5f) {
+				currentRow ++;
+
+				if (currentRow > columns[currentColumn].Count - 1) {
+					currentRow = 0;
+				}
+
+				ChangeCursor();
+
+				axisDown = true;
+			} else if (InputManager.GetAxis("Horizontal",0) > 0.5f) {
+				if (currentColumn < columns.Count - 1) {
+					currentColumn ++;
+					ChangeCursor();
+				}
+
+				axisDown = true;
+			} else if (InputManager.GetAxis("Horizontal",0) < -0.5f) {
+				if (currentColumn > 0) {
+					currentColumn --;
+					ChangeCursor();
+				}
+				
+				axisDown = true;
 			}
 
-			axisDown = true;
-		} else if (InputManager.GetAxis("Horizontal",0) < -0.5f && !axisDown) {
-			if (currentColumn > 0) {
-				currentColumn --;
-				ChangeCursor();
+			if (InputManager.GetButtonDown("O",0)) {
+				cursor.GetComponent<LauncherAction>().OnO();
 			}
-			
-			axisDown = true;
+
+			/*
+			if (InputManager.GetButtonDown("U",0)) {
+				
+			}
+
+			if (InputManager.GetButtonDown("Y",0)) {
+				
+			} */
 		}
 		
 		if (InputManager.GetAxis("Vertical",0) < 0.25f &&
@@ -103,8 +118,6 @@ public class TilesInterface : MonoBehaviour {
 		    InputManager.GetAxis("Horizontal",0) > -0.25f) {
 			axisDown = false;
 		}
-
-
 	}
 
 	void ChangeCursor() {

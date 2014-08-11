@@ -106,21 +106,21 @@ public class LanguageFrench : Language {
 	public override string open
 	{
 		get {
-			return "open";
+			return "ouvrir";
 		}
 	}
 	
 	public override string rate
 	{
 		get {
-			return "beoordeel";
+			return "évaluer";
 		}
 	}
 	
 	public override string unstall
 	{
 		get {
-			return "verwijder";
+			return "enlever";
 		}
 	}
 	

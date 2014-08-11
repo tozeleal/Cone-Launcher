@@ -21,7 +21,7 @@ public class Settings : MonoBehaviour, OuyaSDK.IFetchGamerInfoListener {
 
 	public static List<string> settings = new List<string>();
 
-	public static Language lang = new Language();
+	public static Language lang;
 
 	public static string userName = "'_'";
 
