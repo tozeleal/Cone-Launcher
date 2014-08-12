@@ -15,11 +15,7 @@ public class TilesInterface : MonoBehaviour {
 	public Transform videos;
 
 	public List<string> apps = new List<string>();
-
-	// public static List<GameObject> rowA = new List<GameObject>();
-	// public static List<GameObject> rowB = new List<GameObject>();
-	// public static List<GameObject> rowC = new List<GameObject>();
-
+	
 	public static List<List<GameObject>> columns = new List<List<GameObject>>();
 	
 	public static int currentRow;
@@ -29,7 +25,7 @@ public class TilesInterface : MonoBehaviour {
 
 	public static GameObject cursor;
 
-	private int i;
+	private float timer;
 
 	void Awake() {
 		// Standard Apps
@@ -53,11 +49,12 @@ public class TilesInterface : MonoBehaviour {
 
 		// TODO Other Apps
 
+
 		// Set Cursor Position
 		currentRow = 0;
 		currentColumn = 0;
 		cursor = columns[currentColumn][currentRow];
-		cursor.transform.localScale = ZoomAnimation.selectedSize;
+		StartCoroutine( ZoomAnimation.Zoom (cursor));
 	}
 
 	void Update () {
@@ -71,7 +68,8 @@ public class TilesInterface : MonoBehaviour {
 
 				ChangeCursor();
 
-				axisDown = true;
+				StartCoroutine(DelayButtonPress());
+
 			} else if (InputManager.GetAxis("Vertical",0) < -0.5f) {
 				currentRow ++;
 
@@ -81,21 +79,23 @@ public class TilesInterface : MonoBehaviour {
 
 				ChangeCursor();
 
-				axisDown = true;
+				StartCoroutine(DelayButtonPress());
+
 			} else if (InputManager.GetAxis("Horizontal",0) > 0.5f) {
 				if (currentColumn < columns.Count - 1) {
 					currentColumn ++;
 					ChangeCursor();
 				}
 
-				axisDown = true;
+				StartCoroutine(DelayButtonPress());
+
 			} else if (InputManager.GetAxis("Horizontal",0) < -0.5f) {
 				if (currentColumn > 0) {
 					currentColumn --;
 					ChangeCursor();
 				}
-				
-				axisDown = true;
+
+				StartCoroutine(DelayButtonPress());
 			}
 
 			if (InputManager.GetButtonDown("O",0)) {
@@ -120,8 +120,22 @@ public class TilesInterface : MonoBehaviour {
 		}
 	}
 
+	IEnumerator DelayButtonPress() {
+		timer = 0.2f;
+		axisDown = true;
+
+		while (timer > 0) {
+			timer -= Time.deltaTime;
+
+			if (!axisDown)
+				yield break;
+
+			yield return null;
+		}
+		axisDown = false;
+	}
+
 	void ChangeCursor() {
-		StartCoroutine( ZoomAnimation.ZoomOut (cursor));
 		cursor = columns[currentColumn][currentRow];
 		StartCoroutine( ZoomAnimation.Zoom (cursor));
 

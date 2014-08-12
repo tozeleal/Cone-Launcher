@@ -18,16 +18,11 @@ public class ZoomAnimation : MonoBehaviour {
 		                                   g.transform.position.y,
 		                                   -1);
 
-		while (Vector3.Distance(g.transform.localScale, selectedSize) > 0.001f) {
+		while (TilesInterface.cursor == g) {
 			g.transform.localScale = Vector3.Lerp(g.transform.localScale, selectedSize, (Time.time - startTime) * 4);
 			// renderer.material.color = Color.Lerp(renderer.material.color, selectedColor, Time.time - startTime);
 			yield return null;
 		}
-	}
-
-	public static IEnumerator ZoomOut (GameObject g) {
-		if (g == null)
-			yield break;
 
 		startTime = Time.time;
 

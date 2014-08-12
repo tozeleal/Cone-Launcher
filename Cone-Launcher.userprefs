@@ -1,11 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Language/LanguageFrench.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ZoomAnimation.cs">
     <Files>
       <File FileName="Assets/Scripts/LauncherActions/SettingsAction.cs" Line="8" Column="3" />
       <File FileName="Assets/Scripts/LauncherActions/LauncherAction.cs" Line="8" Column="1" />
-      <File FileName="Assets/Scripts/Settings.cs" Line="33" Column="17" />
-      <File FileName="Assets/Scripts/Language/LanguageFrench.cs" Line="123" Column="19" />
+      <File FileName="Assets/Scripts/Settings.cs" Line="54" Column="48" />
+      <File FileName="Assets/Scripts/Language/LanguageFrench.cs" Line="118" Column="3" />
+      <File FileName="Assets/Scripts/Interface/TilesInterface.cs" Line="125" Column="27" />
+      <File FileName="Assets/Scripts/ZoomAnimation.cs" Line="22" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
