@@ -26,16 +26,17 @@ public class SettingsInterface : Interface {
 		base.OnGUI ();
 		Settings.guiSkin.box.alignment = TextAnchor.MiddleLeft;
 
-		GUI.Box (new Rect (Screen.width * 0.15f, Screen.height * 0.885f, Screen.width * 0.05f, Screen.width * 0.05f),
-		         Settings.oButton);
-		GUI.Box (new Rect (Screen.width * 0.2f, Screen.height * 0.885f, Screen.width * 0.15f, Screen.width * 0.05f),
-		         Settings.lang.connect.ToUpper());
-		
 		GUI.Box (new Rect (Screen.width * 0.35f, Screen.height * 0.885f, Screen.width * 0.05f, Screen.width * 0.05f),
-		         Settings.aButton);
-		GUI.Box (new Rect (Screen.width * 0.4f, Screen.height * 0.885f, Screen.width * 0.06f, Screen.width * 0.05f),
-		         Settings.lang.back.ToUpper());
+		         Settings.oButton);
+		GUI.Box (new Rect (Screen.width * 0.4f, Screen.height * 0.885f, Screen.width * 0.15f, Screen.width * 0.05f),
+		         Settings.lang.select.ToUpper());
 		
+		GUI.Box (new Rect (Screen.width * 0.55f, Screen.height * 0.885f, Screen.width * 0.05f, Screen.width * 0.05f),
+		         Settings.aButton);
+		GUI.Box (new Rect (Screen.width * 0.6f, Screen.height * 0.885f, Screen.width * 0.06f, Screen.width * 0.05f),
+		         Settings.lang.back.ToUpper());
+
+		/*
 		GUI.Box (new Rect (Screen.width * 0.5f, Screen.height * 0.885f, Screen.width * 0.05f, Screen.width * 0.05f),
 		         Settings.uButton);
 		GUI.Box (new Rect (Screen.width * 0.55f, Screen.height * 0.885f, Screen.width * 0.25f, Screen.width * 0.05f),
@@ -45,7 +46,8 @@ public class SettingsInterface : Interface {
 		         Settings.yButton);
 		GUI.Box (new Rect (Screen.width * 0.75f, Screen.height * 0.885f, Screen.width * 0.25f, Screen.width * 0.05f),
 		         Settings.lang.rescan.ToUpper());
-		
+		*/
+
 		Settings.guiSkin.box.fontSize = Mathf.RoundToInt(Screen.width*0.045f);
 		
 		GUI.Box (new Rect (Screen.width * 0.05f, Screen.height * 0.15f, Screen.width * 0.3f, Screen.width * 0.05f),

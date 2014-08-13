@@ -128,4 +128,11 @@ public class LanguageDutch : Language {
 			return "meer";
 		}
 	}
+
+	public override string select
+	{
+		get {
+			return "selecteer";
+		}
+	}
 }

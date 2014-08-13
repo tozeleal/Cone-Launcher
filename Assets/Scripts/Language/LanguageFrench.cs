@@ -127,7 +127,14 @@ public class LanguageFrench : Language {
 	public override string more
 	{
 		get {
-			return "meer";
+			return "plus";
+		}
+	}
+
+	public virtual string select
+	{
+		get {
+			return "sélectionner";
 		}
 	}
 }

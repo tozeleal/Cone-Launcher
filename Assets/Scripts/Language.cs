@@ -128,4 +128,11 @@ public class Language {
 			return "more";
 		}
 	}
+
+	public virtual string select
+	{
+		get {
+			return "select";
+		}
+	}
 }
