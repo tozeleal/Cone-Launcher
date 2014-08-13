@@ -1,16 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Language/LanguageFrench.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Shaders/SkyPlain.shader">
     <Files>
-      <File FileName="Assets/Scripts/LauncherActions/SettingsAction.cs" Line="8" Column="3" />
-      <File FileName="Assets/Scripts/LauncherActions/LauncherAction.cs" Line="8" Column="1" />
-      <File FileName="Assets/Scripts/Settings.cs" Line="54" Column="48" />
-      <File FileName="Assets/Scripts/Language/LanguageFrench.cs" Line="130" Column="16" />
-      <File FileName="Assets/Scripts/Interface/TilesInterface.cs" Line="134" Column="4" />
-      <File FileName="Assets/Scripts/ZoomAnimation.cs" Line="22" Column="5" />
-      <File FileName="Assets/Scripts/Interface.cs" Line="14" Column="43" />
-      <File FileName="Assets/Scripts/Interface/SettingsInterface.cs" Line="70" Column="14" />
-      <File FileName="Assets/Scripts/Language.cs" Line="132" Column="1" />
+      <File FileName="Assets/Shaders/SkyPlain.shader" Line="32" Column="21" />
+      <File FileName="Assets/Shaders/Gradient.shader" Line="37" Column="14" />
+      <File FileName="../../../Dropbox/Game/ThePowerOfTheDark/Assets/Shaders/Glow/Window.shader" Line="25" Column="37" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

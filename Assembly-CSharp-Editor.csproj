@@ -48,9 +48,12 @@
   <ItemGroup>
      <Compile Include="Assets\Ouya\SDK\Editor\OuyaMenuAdmin.cs" />
      <Compile Include="Assets\Ouya\SDK\Editor\OuyaPanel.cs" />
+     <None Include="Assets\Shaders\Tile.shader" />
      <None Include="Assets\Plugins\Android\res\values\strings.xml" />
+     <None Include="Assets\Shaders\Gradient.shader" />
      <None Include="Assets\Plugins\Android\res\layout\main.xml" />
      <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
+     <None Include="Assets\Shaders\SkyPlain.shader" />
  <Reference Include="UnityEditor.Graphs">
  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.Graphs.dll</HintPath>
  </Reference>

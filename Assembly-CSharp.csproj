@@ -61,9 +61,12 @@
      <Compile Include="Assets\Scripts\LauncherActions\SettingsAction.cs" />
      <Compile Include="Assets\Scripts\Settings.cs" />
      <Compile Include="Assets\Scripts\ZoomAnimation.cs" />
+     <None Include="Assets\Shaders\Tile.shader" />
      <None Include="Assets\Plugins\Android\res\values\strings.xml" />
+     <None Include="Assets\Shaders\Gradient.shader" />
      <None Include="Assets\Plugins\Android\res\layout\main.xml" />
      <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
+     <None Include="Assets\Shaders\SkyPlain.shader" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">

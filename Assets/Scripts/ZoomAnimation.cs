@@ -3,8 +3,8 @@ using System.Collections;
 
 public class ZoomAnimation : MonoBehaviour {
 
-	public static Vector3 unslectedSize = new Vector3 (2.2f, 2.2f, 1);
-	public static Vector3 selectedSize = new Vector3 (2.45f, 2.45f, 1);
+	public static Vector3 unslectedSize = new Vector3 (16, 9, 1);
+	public static Vector3 selectedSize = new Vector3 (18, 10.125f, 1);
 
 	public static float startTime;
 

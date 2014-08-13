@@ -58,9 +58,12 @@
      <Compile Include="Assets\Plugins\OuyaSDK.cs" />
      <Compile Include="Assets\Plugins\OuyaUnityPlugin.cs" />
      <Compile Include="Assets\Plugins\UnityPlayer.cs" />
+     <None Include="Assets\Shaders\Tile.shader" />
      <None Include="Assets\Plugins\Android\res\values\strings.xml" />
+     <None Include="Assets\Shaders\Gradient.shader" />
      <None Include="Assets\Plugins\Android\res\layout\main.xml" />
      <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
+     <None Include="Assets\Shaders\SkyPlain.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
