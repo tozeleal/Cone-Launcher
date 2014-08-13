@@ -27,6 +27,10 @@ public class TilesInterface : MonoBehaviour {
 
 	private float timer;
 
+	// TODO Real Apps
+	private int stubApps = 15;
+	public GameObject stubApp;
+
 	void Awake() {
 		// Standard Apps
 		columns.Add (new List<GameObject> (){
@@ -47,8 +51,18 @@ public class TilesInterface : MonoBehaviour {
 			videos.gameObject
 		});
 
-		// TODO Other Apps
+		// TODO Real Apps
+		for (int i=0; i<stubApps; i++) {
+			if (columns[columns.Count - 1].Count == 3)
+				columns.Add (new List<GameObject> ());
 
+			Vector3 appPos = new Vector3((columns.Count - 1) * 17 - 29,
+			                             -(columns[columns.Count - 1].Count - 1) * 10,
+			                           	0);
+
+			GameObject o = (GameObject) Instantiate(stubApp, appPos, Quaternion.identity);
+			columns[columns.Count - 1].Add(o);
+		}
 
 		// Set Cursor Position
 		currentRow = 0;
