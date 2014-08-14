@@ -28,7 +28,7 @@ public class TilesInterface : MonoBehaviour {
 	private float timer;
 
 	// TODO Real Apps
-	private int stubApps = 15;
+	private int stubApps = 17;
 	public GameObject stubApp;
 
 	void Awake() {
@@ -97,6 +97,12 @@ public class TilesInterface : MonoBehaviour {
 
 			} else if (InputManager.GetAxis("Horizontal",0) > 0.5f) {
 				if (currentColumn < columns.Count - 1) {
+					if (columns[currentColumn + 1].Count - 1 != currentRow) {
+						foreach (GameObject l in columns[currentColumn + 1]) {
+							currentRow = columns[currentColumn + 1].IndexOf(l);
+						}
+					}
+
 					currentColumn ++;
 					ChangeCursor();
 				}
