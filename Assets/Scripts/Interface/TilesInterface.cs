@@ -31,7 +31,10 @@ public class TilesInterface : MonoBehaviour {
 	private int stubApps = 17;
 	public GameObject stubApp;
 
-	void Awake() {
+	IEnumerator Start() {
+		// Delete All Apps
+		columns.Clear ();
+
 		// Standard Apps
 		columns.Add (new List<GameObject> (){
 			store.gameObject,
@@ -69,6 +72,18 @@ public class TilesInterface : MonoBehaviour {
 		currentColumn = 0;
 		cursor = columns[currentColumn][currentRow];
 		StartCoroutine( ZoomAnimation.Zoom (cursor));
+
+		// Wait For Wallpaper
+		while (Settings.wallpaper == null) {
+			yield return null;	
+		}
+
+		// Set Wallpaper
+		for (int i = 0; i < columns.Count; i++) {
+			foreach( GameObject g in columns[i]) {
+				g.renderer.material.SetTexture("_Wallpaper", Settings.wallpaper);
+			}
+		}
 	}
 
 	void Update () {
@@ -97,7 +112,7 @@ public class TilesInterface : MonoBehaviour {
 
 			} else if (InputManager.GetAxis("Horizontal",0) > 0.5f) {
 				if (currentColumn < columns.Count - 1) {
-					if (columns[currentColumn + 1].Count - 1 != currentRow) {
+					if (columns[currentColumn + 1].Count - 1 < currentRow) {
 						foreach (GameObject l in columns[currentColumn + 1]) {
 							currentRow = columns[currentColumn + 1].IndexOf(l);
 						}
@@ -118,7 +133,7 @@ public class TilesInterface : MonoBehaviour {
 				StartCoroutine(DelayButtonPress());
 			}
 
-			if (InputManager.GetButtonDown("O",0)) {
+			if (InputManager.GetButtonDown("o", 0)) {
 				cursor.GetComponent<LauncherAction>().OnO();
 			}
 
@@ -131,24 +146,22 @@ public class TilesInterface : MonoBehaviour {
 				
 			} */
 		}
-		
-		if (InputManager.GetAxis("Vertical",0) < 0.25f &&
-		    InputManager.GetAxis("Vertical",0) > -0.25f &&
-		    InputManager.GetAxis("Horizontal",0) < 0.25f &&
-		    InputManager.GetAxis("Horizontal",0) > -0.25f) {
-			axisDown = false;
-		}
 	}
 
 	IEnumerator DelayButtonPress() {
-		timer = 0.2f;
+		timer = 0.15f;
 		axisDown = true;
 
 		while (timer > 0) {
 			timer -= Time.deltaTime;
 
-			if (!axisDown)
+			if (InputManager.GetAxis("Vertical",0) < 0.25f &&
+			    InputManager.GetAxis("Vertical",0) > -0.25f &&
+			    InputManager.GetAxis("Horizontal",0) < 0.25f &&
+			    InputManager.GetAxis("Horizontal",0) > -0.25f) {
+				axisDown = false;
 				yield break;
+			}
 
 			yield return null;
 		}

@@ -8,7 +8,9 @@ public class Settings : MonoBehaviour, OuyaSDK.IFetchGamerInfoListener {
 	public Texture yButtonPublic;
 	public Texture aButtonPublic;
 	public Texture ouyaLogoPublic;
-	
+
+	public Texture wallpaperPublic;
+
 	public GUISkin guiSkinPublic;
 
 	public static Texture oButton;
@@ -21,9 +23,10 @@ public class Settings : MonoBehaviour, OuyaSDK.IFetchGamerInfoListener {
 
 	public static List<string> settings = new List<string>();
 
+	// Settings
 	public static Language lang;
-
 	public static string userName = "'_'";
+	public static Texture wallpaper;
 
 	IEnumerator Start () {
 		oButton = oButtonPublic;
@@ -32,6 +35,7 @@ public class Settings : MonoBehaviour, OuyaSDK.IFetchGamerInfoListener {
 		aButton = aButtonPublic;
 		ouyaLogo = ouyaLogoPublic;
 		guiSkin = guiSkinPublic;
+		wallpaper = wallpaperPublic;
 
 		lang = SetLanguage("");
 

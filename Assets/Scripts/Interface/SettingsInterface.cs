@@ -20,6 +20,10 @@ public class SettingsInterface : Interface {
 				}
 			}
 		}
+
+		if (InputManager.GetButtonDown("a", 0)) {
+			Application.LoadLevel("Launcher");
+		}
 	}
 
 	void OnGUI() {
@@ -54,16 +58,21 @@ public class SettingsInterface : Interface {
 		         Settings.lang.settings.ToUpper());
 		
 		Settings.guiSkin.box.fontSize = Mathf.RoundToInt(Screen.width*0.025f);
-		
+
+
+
 		foreach(string s in Settings.settings) {
-			if (s == Settings.settings[selectedMenuItem])
-				Settings.guiSkin.box.normal.textColor = new Color (1, 0.16470588f, 0);
+			if (s == Settings.settings[selectedMenuItem]) {
+				Settings.guiSkin.box.normal.textColor = new Color (1, 1, 1);
+			} else {
+				Settings.guiSkin.box.normal.textColor = new Color (1, 1, 1, 0.5f);
+			}
 
 			GUI.Box (new Rect (Screen.width * 0.06f, Screen.height * 0.25f + Screen.height * 0.075f * Settings.settings.IndexOf(s), Screen.width * 0.25f, Screen.width * 0.05f),
 			         s.ToUpper());
-
-			Settings.guiSkin.box.normal.textColor = new Color (1, 1, 1, 0.75f);
 		}
+
+		Settings.guiSkin.box.normal.textColor = new Color (1, 1, 1, 0.75f);
 		
 		Settings.guiSkin.box.fontSize = Mathf.RoundToInt(Settings.guiSkin.box.fontSize / 4 * 3);
 	}

@@ -27,14 +27,14 @@ public static class InputManager
 
 	public static bool GetButton(string inputName, int player) {
 		#if UNITY_ANDROID && !UNITY_EDITOR
-			switch (inputName) {
-				case "O":
+			switch (inputName.ToLower()) {
+				case "o":
 					return OuyaSDK.OuyaInput.GetButton(player, OuyaController.BUTTON_O);
-				case "U":
+				case "u":
 					return OuyaSDK.OuyaInput.GetButton(player, OuyaController.BUTTON_U);
-				case "Y":
+				case "y":
 					return OuyaSDK.OuyaInput.GetButton(player, OuyaController.BUTTON_Y);
-				case "A":
+				case "a":
 					return OuyaSDK.OuyaInput.GetButton(player, OuyaController.BUTTON_A);
 				default:
 					return false;

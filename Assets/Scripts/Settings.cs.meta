@@ -8,6 +8,7 @@ MonoImporter:
   - yButtonPublic: {fileID: 2800000, guid: e9feca66c90344360a756acb32a9c1ea, type: 3}
   - aButtonPublic: {fileID: 2800000, guid: 7685c0b602d844ffc8b0c47f07b69d4d, type: 3}
   - ouyaLogoPublic: {fileID: 2800000, guid: 067bab1c0593244a9a71daa2d45e6f0c, type: 3}
+  - wallpaperPublic: {fileID: 2800000, guid: 016a51e2c2b0a4d94b263867cf05f878, type: 3}
   - guiSkinPublic: {fileID: 11400000, guid: a2cad742c79b545858407c9c7b4eac5e, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}

@@ -1,7 +1,7 @@
 ﻿Shader "Cone/Tile" {
 	Properties {
-		_MainTex ("Texture", 2D) = "white" {}
-		_Wallpaper ("Base (RGB)", 2D) = "white" {}
+		_MainTex ("Base (RGB)", 2D) = "white" {}
+		_Wallpaper ("Wallpaper", 2D) = "white" {}
 	}
 	
     SubShader {
@@ -44,4 +44,6 @@
             ENDCG
         }
     }
+    
+	Fallback "Unlit/Texture"
 }
