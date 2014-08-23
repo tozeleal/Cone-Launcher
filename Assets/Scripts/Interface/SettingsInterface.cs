@@ -30,14 +30,14 @@ public class SettingsInterface : Interface {
 		base.OnGUI ();
 		Settings.guiSkin.box.alignment = TextAnchor.MiddleLeft;
 
-		GUI.Box (new Rect (Screen.width * 0.35f, Screen.height * 0.885f, Screen.width * 0.05f, Screen.width * 0.05f),
+		GUI.Box (new Rect (Screen.width * 0.35f, Screen.height * 0.875f, Screen.width * 0.05f, Screen.width * 0.05f),
 		         Settings.oButton);
-		GUI.Box (new Rect (Screen.width * 0.4f, Screen.height * 0.885f, Screen.width * 0.15f, Screen.width * 0.05f),
+		GUI.Box (new Rect (Screen.width * 0.4f, Screen.height * 0.875f, Screen.width * 0.15f, Screen.width * 0.05f),
 		         Settings.lang.select.ToUpper());
 		
-		GUI.Box (new Rect (Screen.width * 0.55f, Screen.height * 0.885f, Screen.width * 0.05f, Screen.width * 0.05f),
+		GUI.Box (new Rect (Screen.width * 0.55f, Screen.height * 0.875f, Screen.width * 0.05f, Screen.width * 0.05f),
 		         Settings.aButton);
-		GUI.Box (new Rect (Screen.width * 0.6f, Screen.height * 0.885f, Screen.width * 0.06f, Screen.width * 0.05f),
+		GUI.Box (new Rect (Screen.width * 0.6f, Screen.height * 0.875f, Screen.width * 0.06f, Screen.width * 0.05f),
 		         Settings.lang.back.ToUpper());
 
 		/*
