@@ -47,15 +47,17 @@ public static class InputManager
 	public static bool GetButtonDown(string inputName, int player)
 	{
 		#if UNITY_ANDROID && !UNITY_EDITOR
-			switch (inputName) {
-				case "Jump":
-					return OuyaSDK.OuyaInput.GetButtonDown(player, OuyaController.BUTTON_O);
-				case "Run":
-					return OuyaSDK.OuyaInput.GetButtonDown(player, OuyaController.BUTTON_U);
-				case "Menu":
-					return OuyaSDK.OuyaInput.GetButtonDown(player, OuyaController.BUTTON_Y);
-				default:
-					return false;
+			switch (inputName.ToLower()) {
+			case "o":
+				return OuyaSDK.OuyaInput.GetButtonDown(player, OuyaController.BUTTON_O);
+			case "u":
+				return OuyaSDK.OuyaInput.GetButtonDown(player, OuyaController.BUTTON_U);
+			case "y":
+				return OuyaSDK.OuyaInput.GetButtonDown(player, OuyaController.BUTTON_Y);
+			case "a":
+				return OuyaSDK.OuyaInput.GetButtonDown(player, OuyaController.BUTTON_A);
+			default:
+				return false;
 			}
 		#endif
 		

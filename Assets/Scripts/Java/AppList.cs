@@ -19,7 +19,6 @@ public class AppList : MonoBehaviour {
 			}
 		} */
 
-
 		AndroidJavaClass up = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
 		AndroidJavaObject ca = up.GetStatic<AndroidJavaObject>("currentActivity");
 		AndroidJavaObject packageManager = ca.Call<AndroidJavaObject>("getPackageManager");
