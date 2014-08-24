@@ -47,5 +47,5 @@
         }
     }
     
-	Fallback "Unlit/Texture"
+	Fallback "Unlit/Transparent"
 }
