@@ -6,6 +6,8 @@
 	
     SubShader {
         Pass {
+        	LOD 400
+        
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag

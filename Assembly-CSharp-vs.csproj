@@ -39,10 +39,10 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>/Applications/Unity 4/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>/Applications/Unity 4/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
@@ -50,10 +50,11 @@
      <Compile Include="Assets\Scripts\FramerateCounter.cs" />
      <Compile Include="Assets\Scripts\Init.cs" />
      <Compile Include="Assets\Scripts\InputManager.cs" />
-     <Compile Include="Assets\Scripts\Interface.cs" />
+     <Compile Include="Assets\Scripts\Interface\Interface.cs" />
      <Compile Include="Assets\Scripts\Interface\LauncherInterface.cs" />
      <Compile Include="Assets\Scripts\Interface\SettingsInterface.cs" />
      <Compile Include="Assets\Scripts\Interface\TilesInterface.cs" />
+     <Compile Include="Assets\Scripts\Interface\ZoomAnimation.cs" />
      <Compile Include="Assets\Scripts\Java\AppList.cs" />
      <Compile Include="Assets\Scripts\Language.cs" />
      <Compile Include="Assets\Scripts\Language\LanguageDutch.cs" />
@@ -61,7 +62,6 @@
      <Compile Include="Assets\Scripts\LauncherActions\LauncherAction.cs" />
      <Compile Include="Assets\Scripts\LauncherActions\SettingsAction.cs" />
      <Compile Include="Assets\Scripts\Settings.cs" />
-     <Compile Include="Assets\Scripts\ZoomAnimation.cs" />
      <None Include="Assets\Shaders\Tile.shader" />
      <None Include="Assets\Plugins\Android\res\values\strings.xml" />
      <None Include="Assets\Shaders\Gradient.shader" />

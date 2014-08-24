@@ -5,29 +5,42 @@ public class SettingsInterface : Interface {
 	private int selectedMenuItem = 0;
 	private bool axisDown = false;
 	private float timer;
+	private bool mainCatagories = true;
+	public static string selectedCatagory;
 
 	void Update() {
-		if (!axisDown) {
-			if (InputManager.GetAxis ("Vertical", 0) > 0.5f) {
-				if (selectedMenuItem > 0) {
-					selectedMenuItem -= 1;
-					StartCoroutine(DelayButtonPress());
+		if (mainCatagories){
+			if (!axisDown) {
+				if (InputManager.GetAxis ("Vertical", 0) > 0.5f) {
+					if (selectedMenuItem > 0) {
+						selectedMenuItem -= 1;
+						StartCoroutine(DelayButtonPress());
+					}
+				} else if (InputManager.GetAxis ("Vertical", 0) < -0.5f) {
+					if (selectedMenuItem < Settings.settings.Count - 1) {
+						selectedMenuItem += 1;
+						StartCoroutine(DelayButtonPress());
+					}
 				}
-			} else if (InputManager.GetAxis ("Vertical", 0) < -0.5f) {
-				if (selectedMenuItem < Settings.settings.Count - 1) {
-					selectedMenuItem += 1;
-					StartCoroutine(DelayButtonPress());
-				}
+			}
+
+			if (InputManager.GetButtonDown("a", 0)) {
+					Application.LoadLevel("Launcher");
+			}
+		} else {
+			if (InputManager.GetButtonDown("a", 0)) {
+				mainCatagories = true;
 			}
 		}
 
-		if (InputManager.GetButtonDown("a", 0)) {
-			Application.LoadLevel("Launcher");
+		if (InputManager.GetButtonDown("o", 0)) {
+			mainCatagories = false;
 		}
 	}
 
 	void OnGUI() {
 		base.OnGUI ();
+
 		Settings.guiSkin.box.alignment = TextAnchor.MiddleLeft;
 
 		GUI.Box (new Rect (Screen.width * 0.35f, Screen.height * 0.875f, Screen.width * 0.05f, Screen.width * 0.05f),
@@ -52,31 +65,51 @@ public class SettingsInterface : Interface {
 		         Settings.lang.rescan.ToUpper());
 		*/
 
-		Settings.guiSkin.box.fontSize = Mathf.RoundToInt(Screen.width*0.045f);
-		
-		GUI.Box (new Rect (Screen.width * 0.05f, Screen.height * 0.15f, Screen.width * 0.3f, Screen.width * 0.05f),
-		         Settings.lang.settings.ToUpper());
-		
 		Settings.guiSkin.box.fontSize = Mathf.RoundToInt(Screen.width*0.025f);
 
+		if (mainCatagories) {
+			ShowCatagories();
+			Settings.guiSkin.box.normal.textColor = new Color (1, 1, 1, 0.75f);
+		} else {
+			ShowCatagoriesUnselected();
+			Settings.guiSkin.box.normal.textColor = new Color (1, 1, 1, 0.3f);
+		}
 
+		Settings.guiSkin.box.fontSize = Mathf.RoundToInt(Screen.width*0.045f);
+		
+		GUI.Box (new Rect (Screen.width * 0.06f, Screen.height * 0.15f, Screen.width * 0.3f, Screen.width * 0.05f),
+		         Settings.lang.settings.ToUpper());
+		
+		Settings.guiSkin.box.fontSize = Mathf.RoundToInt(Screen.width*0.02f);
+	}
 
+	void ShowCatagories() {
 		foreach(string s in Settings.settings) {
 			if (s == Settings.settings[selectedMenuItem]) {
 				Settings.guiSkin.box.normal.textColor = new Color (1, 1, 1);
+				selectedCatagory = s;
 			} else {
 				Settings.guiSkin.box.normal.textColor = new Color (1, 1, 1, 0.5f);
 			}
-
-			GUI.Box (new Rect (Screen.width * 0.06f, Screen.height * 0.25f + Screen.height * 0.075f * Settings.settings.IndexOf(s), Screen.width * 0.25f, Screen.width * 0.05f),
+			
+			GUI.Box (new Rect (Screen.width * 0.07f, Screen.height * 0.25f + Screen.height * 0.075f * Settings.settings.IndexOf(s), Screen.width * 0.25f, Screen.width * 0.05f),
 			         s.ToUpper());
 		}
-
-		Settings.guiSkin.box.normal.textColor = new Color (1, 1, 1, 0.75f);
-		
-		Settings.guiSkin.box.fontSize = Mathf.RoundToInt(Settings.guiSkin.box.fontSize / 4 * 3);
 	}
 
+	void ShowCatagoriesUnselected() {
+		foreach(string s in Settings.settings) {
+			if (s == Settings.settings[selectedMenuItem]) {
+				Settings.guiSkin.box.normal.textColor = new Color (1, 1, 1, 0.5f);
+			} else {
+				Settings.guiSkin.box.normal.textColor = new Color (1, 1, 1, 0.25f);
+			}
+			
+			GUI.Box (new Rect (Screen.width * 0.07f, Screen.height * 0.25f + Screen.height * 0.075f * Settings.settings.IndexOf(s), Screen.width * 0.25f, Screen.width * 0.05f),
+			         s.ToUpper());
+		}
+	}
+	
 	IEnumerator DelayButtonPress() {
 		timer = 0.25f;
 		axisDown = true;

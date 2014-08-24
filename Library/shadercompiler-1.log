@@ -1,3 +1,25 @@
-Base path: /Applications/Unity/Unity.app/Contents
+Base path: /Applications/Unity 4/Unity.app/Contents
 Pipe name: \\.\pipe\UnityShaderCompiler-1--1605078572
 Cmd: getPlatforms
+Cmd: preprocess
+  insize=1163 outsize=291 ok=1
+Cmd: compileSnippet
+  error: 2 plat 0 at (15): Unknown pre-processor directive #LOD
+  api=0 type=0 insize=1169 outsize=0 kw= ok=0
+Cmd: preprocess
+  insize=1162 outsize=290 ok=1
+Cmd: compileSnippet
+  error: 2 plat 0 at (15): syntax error, unexpected integer constant at token "<int-const>" type name expected at token "<int-const>"
+  error: 1 plat 0 at (15): unrecognized profile specifier "LOD"
+  error: 2 plat 0 at (18): syntax error, unexpected identifier at token "sampler2D" type name expected at token "sampler2D" declaration of "sampler2D" conflicts with previous declaration at (17)
+  api=0 type=0 insize=1168 outsize=0 kw= ok=0
+Cmd: preprocess
+  insize=1176 outsize=317 ok=1
+Cmd: compileSnippet
+  api=0 type=0 insize=1156 outsize=450 kw= ok=1
+Cmd: compileSnippet
+  api=0 type=1 insize=1156 outsize=313 kw= ok=1
+Cmd: compileSnippet
+  api=5 type=0 insize=1156 outsize=8189 kw= ok=1
+Cmd: compileSnippet
+  api=5 type=1 insize=1156 outsize=6 kw= ok=1
