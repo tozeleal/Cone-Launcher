@@ -1,4 +1,4 @@
-Cone Launcher
+![Alt text](/Logo/Logo.png "Optional title")
 =============
 
 An alternative launcher for OUYA in the early stages of development
