@@ -134,7 +134,7 @@ public class TilesInterface : MonoBehaviour {
 			}
 
 			if (InputManager.GetButtonDown("o", 0)) {
-				cursor.GetComponent<LauncherAction>().OnO();
+				cursor.GetComponent<Action>().OnO();
 			}
 
 			/*
@@ -172,6 +172,6 @@ public class TilesInterface : MonoBehaviour {
 		cursor = columns[currentColumn][currentRow];
 		StartCoroutine( ZoomAnimation.Zoom (cursor));
 
-		LauncherInterface.selection = cursor.GetComponent<LauncherAction>().action;
+		LauncherInterface.selection = cursor.GetComponent<Action>().action;
 	}
 }

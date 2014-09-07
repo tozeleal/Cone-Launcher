@@ -6,6 +6,8 @@ public class SettingsInterface : Interface {
 	private bool axisDown = false;
 	private float timer;
 	private bool mainCatagories = true;
+	private SettingsPanel settingsPanel = null;
+
 	public static string selectedCatagory;
 
 	void Update() {
@@ -30,11 +32,24 @@ public class SettingsInterface : Interface {
 		} else {
 			if (InputManager.GetButtonDown("a", 0)) {
 				mainCatagories = true;
+				settingsPanel = null;
 			}
 		}
 
 		if (InputManager.GetButtonDown("o", 0)) {
 			mainCatagories = false;
+			settingsPanel = GetSettingsCatagory(selectedCatagory);
+		}
+	}
+
+	public SettingsPanel GetSettingsCatagory(string catagory) {
+		switch(catagory) {
+			case "wifi":
+				return new WifiSettingsPanel();
+			break;
+			default:
+				return new SettingsPanel();
+			break;
 		}
 	}
 
@@ -42,30 +57,6 @@ public class SettingsInterface : Interface {
 		base.OnGUI ();
 
 		Settings.guiSkin.box.alignment = TextAnchor.MiddleLeft;
-
-		GUI.Box (new Rect (Screen.width * 0.35f, Screen.height * 0.875f, Screen.width * 0.05f, Screen.width * 0.05f),
-		         Settings.oButton);
-		GUI.Box (new Rect (Screen.width * 0.4f, Screen.height * 0.875f, Screen.width * 0.15f, Screen.width * 0.05f),
-		         Settings.lang.select.ToUpper());
-		
-		GUI.Box (new Rect (Screen.width * 0.55f, Screen.height * 0.875f, Screen.width * 0.05f, Screen.width * 0.05f),
-		         Settings.aButton);
-		GUI.Box (new Rect (Screen.width * 0.6f, Screen.height * 0.875f, Screen.width * 0.06f, Screen.width * 0.05f),
-		         Settings.lang.back.ToUpper());
-
-		/*
-		GUI.Box (new Rect (Screen.width * 0.5f, Screen.height * 0.885f, Screen.width * 0.05f, Screen.width * 0.05f),
-		         Settings.uButton);
-		GUI.Box (new Rect (Screen.width * 0.55f, Screen.height * 0.885f, Screen.width * 0.25f, Screen.width * 0.05f),
-		         Settings.lang.options.ToUpper());
-		
-		GUI.Box (new Rect (Screen.width * 0.7f, Screen.height * 0.885f, Screen.width * 0.05f, Screen.width * 0.05f),
-		         Settings.yButton);
-		GUI.Box (new Rect (Screen.width * 0.75f, Screen.height * 0.885f, Screen.width * 0.25f, Screen.width * 0.05f),
-		         Settings.lang.rescan.ToUpper());
-		*/
-
-		Settings.guiSkin.box.fontSize = Mathf.RoundToInt(Screen.width*0.025f);
 
 		if (mainCatagories) {
 			ShowCatagories();
@@ -81,9 +72,26 @@ public class SettingsInterface : Interface {
 		         Settings.lang.settings.ToUpper());
 		
 		Settings.guiSkin.box.fontSize = Mathf.RoundToInt(Screen.width*0.02f);
+
+		if (settingsPanel != null)
+			settingsPanel.OnGUI ();
 	}
 
 	void ShowCatagories() {
+		// Show Tooltips
+		GUI.Box (new Rect (Screen.width * 0.35f, Screen.height * 0.875f, Screen.width * 0.05f, Screen.width * 0.05f),
+		         Settings.oButton);
+		GUI.Box (new Rect (Screen.width * 0.4f, Screen.height * 0.875f, Screen.width * 0.15f, Screen.width * 0.05f),
+		         Settings.lang.select.ToUpper());
+		
+		GUI.Box (new Rect (Screen.width * 0.55f, Screen.height * 0.875f, Screen.width * 0.05f, Screen.width * 0.05f),
+		         Settings.aButton);
+		GUI.Box (new Rect (Screen.width * 0.6f, Screen.height * 0.875f, Screen.width * 0.06f, Screen.width * 0.05f),
+		         Settings.lang.back.ToUpper());
+
+		Settings.guiSkin.box.fontSize = Mathf.RoundToInt(Screen.width*0.025f);
+
+		// Show All Catagories
 		foreach(string s in Settings.settings) {
 			if (s == Settings.settings[selectedMenuItem]) {
 				Settings.guiSkin.box.normal.textColor = new Color (1, 1, 1);
@@ -98,6 +106,9 @@ public class SettingsInterface : Interface {
 	}
 
 	void ShowCatagoriesUnselected() {
+		Settings.guiSkin.box.fontSize = Mathf.RoundToInt(Screen.width*0.025f);
+
+		// Show All Catagories
 		foreach(string s in Settings.settings) {
 			if (s == Settings.settings[selectedMenuItem]) {
 				Settings.guiSkin.box.normal.textColor = new Color (1, 1, 1, 0.5f);

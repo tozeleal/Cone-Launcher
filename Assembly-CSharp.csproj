@@ -59,9 +59,12 @@
      <Compile Include="Assets\Scripts\Language.cs" />
      <Compile Include="Assets\Scripts\Language\LanguageDutch.cs" />
      <Compile Include="Assets\Scripts\Language\LanguageFrench.cs" />
-     <Compile Include="Assets\Scripts\LauncherActions\LauncherAction.cs" />
+     <Compile Include="Assets\Scripts\LauncherActions\Action.cs" />
+     <Compile Include="Assets\Scripts\LauncherActions\AppAction.cs" />
      <Compile Include="Assets\Scripts\LauncherActions\SettingsAction.cs" />
      <Compile Include="Assets\Scripts\Settings.cs" />
+     <Compile Include="Assets\Scripts\SettingsPanels\SettingsPanel.cs" />
+     <Compile Include="Assets\Scripts\SettingsPanels\WifiSettingsPanel.cs" />
      <None Include="Assets\Shaders\Tile.shader" />
      <None Include="Assets\Plugins\Android\res\values\strings.xml" />
      <None Include="Assets\Shaders\Gradient.shader" />
