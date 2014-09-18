@@ -4,10 +4,14 @@ using System.Collections;
 public class LauncherInterface : Interface {
 
 	public static string selection = "MenuItem";
+	public static bool zoomSelectedItem;
 	public float maxDistance = 5;
 	public float lerpSpeed = 0.1f;
 
 	public void Update() {
+		if (zoomSelectedItem)
+			return;
+
 		// Debug.Log (transform.position.x + " " + TilesInterface.cursor.transform.position.x);
 		if (Mathf.Abs(TilesInterface.cursor.transform.position.x - transform.position.x) > maxDistance) {
 			transform.position += new Vector3((TilesInterface.cursor.transform.position.x - transform.position.x) * lerpSpeed * Time.deltaTime,0,0);
@@ -18,7 +22,7 @@ public class LauncherInterface : Interface {
 		if (transform.position.x < 0) {
 			transform.position = new Vector3 (0,
 			                                 transform.position.y,
-		  		                             transform.position.z);
+			                                 transform.position.z);
 		} else if (transform.position.x > maxPos) {
 			transform.position = new Vector3 (maxPos,
 			                                  transform.position.y,
@@ -68,5 +72,19 @@ public class LauncherInterface : Interface {
 		         Settings.oButton);
 		GUI.Box (new Rect (Screen.width * 0.475f, Screen.height * 0.875f, Screen.width * 0.1f, Screen.width * 0.05f),
 		         Settings.lang.open.ToUpper());
+	}
+
+	public static IEnumerator Zoom() {
+		zoomSelectedItem = true;
+
+		while (Camera.main.transform.position.x > -90) {
+			Camera.main.transform.position = Vector3.Lerp (Camera.main.transform.position,
+															new Vector3(-125, 0, Camera.main.transform.position.z),
+															3 * Time.deltaTime);
+
+			yield return null;
+		}
+
+		zoomSelectedItem = false;
 	}
 }

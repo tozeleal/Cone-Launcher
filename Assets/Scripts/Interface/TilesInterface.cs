@@ -26,6 +26,8 @@ public class TilesInterface : MonoBehaviour {
 	public static GameObject cursor;
 
 	private float timer;
+	
+	public AudioClip switchSound;
 
 	// TODO Real Apps
 	private int stubApps = 17;
@@ -169,6 +171,8 @@ public class TilesInterface : MonoBehaviour {
 	}
 
 	void ChangeCursor() {
+		audio.PlayOneShot (switchSound);
+
 		cursor = columns[currentColumn][currentRow];
 		StartCoroutine( ZoomAnimation.Zoom (cursor));
 

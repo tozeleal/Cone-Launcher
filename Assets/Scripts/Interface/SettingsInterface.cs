@@ -10,6 +10,22 @@ public class SettingsInterface : Interface {
 
 	public static string selectedCatagory;
 
+	private float introAnim = 1;
+
+	IEnumerator Start() {
+		introAnim = 0.5f;
+
+		while (introAnim != 0) {
+			if (introAnim > 0)
+				introAnim -= 1.5f * Time.deltaTime;
+			
+			if (introAnim < 0)
+				introAnim = 0;
+
+			yield return null;
+		}
+	}
+
 	void Update() {
 		if (mainCatagories){
 			if (!axisDown) {
@@ -27,7 +43,8 @@ public class SettingsInterface : Interface {
 			}
 
 			if (InputManager.GetButtonDown("a", 0)) {
-					Application.LoadLevel("Launcher");
+				if (introAnim == 0)
+					StartCoroutine( BackToMenu());
 			}
 		} else {
 			if (InputManager.GetButtonDown("a", 0)) {
@@ -68,7 +85,7 @@ public class SettingsInterface : Interface {
 
 		Settings.guiSkin.box.fontSize = Mathf.RoundToInt(Screen.width*0.045f);
 		
-		GUI.Box (new Rect (Screen.width * 0.06f, Screen.height * 0.15f, Screen.width * 0.3f, Screen.width * 0.05f),
+		GUI.Box (new Rect (Screen.width * (0.06f - introAnim), Screen.height * 0.15f, Screen.width * 0.3f, Screen.width * 0.05f),
 		         Settings.lang.settings.ToUpper());
 		
 		Settings.guiSkin.box.fontSize = Mathf.RoundToInt(Screen.width*0.02f);
@@ -100,7 +117,7 @@ public class SettingsInterface : Interface {
 				Settings.guiSkin.box.normal.textColor = new Color (1, 1, 1, 0.5f);
 			}
 			
-			GUI.Box (new Rect (Screen.width * 0.07f, Screen.height * 0.25f + Screen.height * 0.075f * Settings.settings.IndexOf(s), Screen.width * 0.25f, Screen.width * 0.05f),
+			GUI.Box (new Rect (Screen.width * (0.07f - introAnim), Screen.height * 0.25f + Screen.height * 0.075f * Settings.settings.IndexOf(s), Screen.width * 0.25f, Screen.width * 0.05f),
 			         s.ToUpper());
 		}
 	}
@@ -116,13 +133,13 @@ public class SettingsInterface : Interface {
 				Settings.guiSkin.box.normal.textColor = new Color (1, 1, 1, 0.25f);
 			}
 			
-			GUI.Box (new Rect (Screen.width * 0.07f, Screen.height * 0.25f + Screen.height * 0.075f * Settings.settings.IndexOf(s), Screen.width * 0.25f, Screen.width * 0.05f),
+			GUI.Box (new Rect (Screen.width * (0.07f - introAnim), Screen.height * 0.25f + Screen.height * 0.075f * Settings.settings.IndexOf(s), Screen.width * 0.25f, Screen.width * 0.05f),
 			         s.ToUpper());
 		}
 	}
 	
 	IEnumerator DelayButtonPress() {
-		timer = 0.25f;
+		timer = 0.1f;
 		axisDown = true;
 		
 		while (timer > 0) {
@@ -135,5 +152,16 @@ public class SettingsInterface : Interface {
 		}
 
 		axisDown = false;
+	}
+
+	IEnumerator BackToMenu() {
+		while (introAnim < 0.5f) {
+			if (introAnim < 0.5f)
+				introAnim += 1.5f * Time.deltaTime;
+
+			yield return null;
+		}
+
+		Application.LoadLevel("Launcher");
 	}
 }
