@@ -135,18 +135,6 @@ public class OuyaPanel : EditorWindow
         EditorPrefs.SetString(KEY_PATH_OUYA_SDK, pathOuyaSDKJar);
     }
 
-    static string GetRJava()
-    {
-        if (string.IsNullOrEmpty(PlayerSettings.bundleIdentifier))
-        {
-            return string.Empty;
-        }
-
-        string path = string.Format("Assets/Plugins/Android/src/{0}/R.java", PlayerSettings.bundleIdentifier.Replace(".", "/"));
-        FileInfo fi = new FileInfo(path);
-        return fi.FullName;
-    }
-
     public static string GetMainActivity()
     {
         return javaAppName;
@@ -709,7 +697,7 @@ public class OuyaPanel : EditorWindow
         switch (Application.platform)
         {
             case RuntimePlatform.OSXEditor:
-                pathToolsJar = string.Format("{0}/Contents/Classes/classes.jar", pathJDK);
+				pathToolsJar = string.Format("{0}/Contents/Home/lib/tools.jar", pathJDK);
                 pathJar = string.Format("{0}/Contents/Commands/{1}", pathJDK, FILE_JAR_MAC);
                 pathJavaC = string.Format("{0}/Contents/Commands/{1}", pathJDK, FILE_JAVAC_MAC);
                 pathJavaP = string.Format("{0}/Contents/Commands/{1}", pathJDK, FILE_JAVAP_MAC);
@@ -1068,25 +1056,10 @@ public class OuyaPanel : EditorWindow
 
         Thread.Sleep(100);
 
+        /*
         RunProcess(pathAAPT, string.Format("package -v -f -m -J gen -M \"{0}\" -S \"{1}\" -I \"{2}\" -F \"{3}/resources.ap_\" -J \"{4}\"",
             pathManifestPath, pathRes, GetPathAndroidJar(), pathBin, pathSrc));
-
-        string pathRJava = GetRJava();
-        if (string.IsNullOrEmpty(pathRJava))
-        {
-            Debug.LogError("Path to R.java is empty");
-            return false;
-        }
-        if (File.Exists(pathRJava))
-        {
-            using (FileStream fs = File.Open(pathRJava, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-            {
-                using (StreamReader sr = new StreamReader(fs))
-                {
-                    Debug.Log(sr.ReadToEnd());
-                }
-            }
-        }
+        */
 
         if (Directory.Exists(pathBin))
         {
@@ -1110,19 +1083,8 @@ public class OuyaPanel : EditorWindow
         {
             Directory.CreateDirectory(pathClasses);
         }
-        string pathRJava = GetRJava();
-        if (string.IsNullOrEmpty(pathRJava))
-        {
-            Debug.LogError("Path to R.java is empty");
-            return false;
-        }
-        if (!File.Exists(pathRJava))
-        {
-            Debug.LogError("R.java cannot be found");
-            return false;
-        }
-        string includeFiles = string.Format("\"{0}/{1}.java\" \"{0}/IOuyaActivity.java\" \"{0}/UnityOuyaFacade.java\" \"{2}\"",
-            pathSrc, javaAppName, pathRJava);
+        string includeFiles = string.Format("\"{0}/{1}.java\" \"{0}/IOuyaActivity.java\" \"{0}/UnityOuyaFacade.java\"",
+            pathSrc, javaAppName);
         string jars = string.Empty;
 
         if (File.Exists(pathToolsJar))
@@ -1430,6 +1392,7 @@ public class OuyaPanel : EditorWindow
             "SceneShowJavaScript",
             "SceneShowProducts",
             "SceneShowUnityInput",
+            "VirtualController",
         };
 
     private static int m_selectedAdbMode = 0;
@@ -1701,8 +1664,7 @@ public class OuyaPanel : EditorWindow
                 GUIDisplayUnityFile(KEY_PATH_OUYA_SDK, pathOuyaSDKJar);
                 GUIDisplayUnityFile(KEY_PATH_JAR_OUYA_UNITY_PLUGIN, pathOuyaUnityPluginJar);
                 GUIDisplayUnityFile("Manifest", pathManifestPath);
-                GUIDisplayUnityFile("key.der", "Assets/Plugins/Android/res/raw/key.der");
-                GUIDisplayUnityFile("R.Java", GetRJava());
+                GUIDisplayUnityFile("key.der", "Assets/Plugins/Android/assets/key.der");
                 GUIDisplayUnityFile("Activity.Java", GetApplicationJava());
                 GUIDisplayUnityFile("IOuyaActivity.Java", GetIOuyaActivityJava());
                 //GUIDisplayFolder("Bin", pathBin);
@@ -2569,15 +2531,17 @@ public class OuyaPanel : EditorWindow
     enum Languages
     {
         EnglishUnitedStates,
-        EnglishUnitedAustralia,
-        EnglishUnitedCanada,
-        EnglishUnitedKingdom,
+        //EnglishAustralia,
+        //EnglishCanada,
+        //EnglishUnitedKingdom,
+        French,
+        Italian,
         German,
         Spanish,
-        Korean,
-        China,
-        Taiwan,
-        Japan,
+        //Korean,
+        //China,
+        //Taiwan,
+        //Japan,
     }
 
     struct LanguageDetails
@@ -2590,15 +2554,17 @@ public class OuyaPanel : EditorWindow
     private static LanguageDetails[] LanguageMap =
         {
             new LanguageDetails() { Language = Languages.EnglishUnitedStates, PropertySystemLanguage="en", PropertySystemCountry="US"}, 
-            new LanguageDetails() { Language = Languages.EnglishUnitedAustralia, PropertySystemLanguage="en", PropertySystemCountry="AU"}, 
-            new LanguageDetails() { Language = Languages.EnglishUnitedCanada, PropertySystemLanguage="en", PropertySystemCountry="CA"}, 
-            new LanguageDetails() { Language = Languages.EnglishUnitedKingdom, PropertySystemLanguage="en", PropertySystemCountry="GB"}, 
-            new LanguageDetails() { Language = Languages.German, PropertySystemLanguage="de", PropertySystemCountry="de"}, 
+            //new LanguageDetails() { Language = Languages.EnglishAustralia, PropertySystemLanguage="en", PropertySystemCountry="AU"}, 
+            //new LanguageDetails() { Language = Languages.EnglishCanada, PropertySystemLanguage="en", PropertySystemCountry="CA"}, 
+            //new LanguageDetails() { Language = Languages.EnglishUnitedKingdom, PropertySystemLanguage="en", PropertySystemCountry="GB"}, 
+            new LanguageDetails() { Language = Languages.German, PropertySystemLanguage="fr", PropertySystemCountry="FR"}, 
+            new LanguageDetails() { Language = Languages.Italian, PropertySystemLanguage="it", PropertySystemCountry="IT"}, 
+            new LanguageDetails() { Language = Languages.German, PropertySystemLanguage="de", PropertySystemCountry="DE"}, 
             new LanguageDetails() { Language = Languages.Spanish, PropertySystemLanguage="es", PropertySystemCountry="ES"}, 
-            new LanguageDetails() { Language = Languages.Korean, PropertySystemLanguage="ko", PropertySystemCountry="KR"}, 
-            new LanguageDetails() { Language = Languages.China, PropertySystemLanguage="zh", PropertySystemCountry="CN"}, 
-            new LanguageDetails() { Language = Languages.Taiwan, PropertySystemLanguage="zh", PropertySystemCountry="TW"}, 
-            new LanguageDetails() { Language = Languages.Japan, PropertySystemLanguage="ja", PropertySystemCountry="JP"}, 
+            //new LanguageDetails() { Language = Languages.Korean, PropertySystemLanguage="ko", PropertySystemCountry="KR"}, 
+            //new LanguageDetails() { Language = Languages.China, PropertySystemLanguage="zh", PropertySystemCountry="CN"}, 
+            //new LanguageDetails() { Language = Languages.Taiwan, PropertySystemLanguage="zh", PropertySystemCountry="TW"}, 
+            //new LanguageDetails() { Language = Languages.Japan, PropertySystemLanguage="ja", PropertySystemCountry="JP"}, 
         };
 
     private Languages m_language = Languages.EnglishUnitedStates;
