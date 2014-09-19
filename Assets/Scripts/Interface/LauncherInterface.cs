@@ -8,22 +8,23 @@ public class LauncherInterface : Interface {
 	public float maxDistance = 5;
 	public float lerpSpeed = 0.1f;
 
+	private float curX;
+
 	public void Update() {
 		if (zoomSelectedItem)
 			return;
 
-		// Debug.Log (transform.position.x + " " + TilesInterface.cursor.transform.position.x);
-		if (Mathf.Abs(TilesInterface.cursor.transform.position.x - transform.position.x) > maxDistance) {
-			transform.position += new Vector3((TilesInterface.cursor.transform.position.x - transform.position.x) * lerpSpeed * Time.deltaTime,0,0);
+		curX = TilesInterface.cursor.transform.position.x;
+		if (transform.position.x < 0)
+			curX = Mathf.Max (curX, 9);
+
+		if (Mathf.Abs(curX - transform.position.x) > maxDistance) {
+			transform.position += new Vector3((curX - transform.position.x) * lerpSpeed * Time.deltaTime,0,0);
 		}
 
 		float maxPos = TilesInterface.columns [TilesInterface.columns.Count - 1] [0].transform.position.x - 29;
 
-		if (transform.position.x < 0) {
-			transform.position = new Vector3 (0,
-			                                 transform.position.y,
-			                                 transform.position.z);
-		} else if (transform.position.x > maxPos) {
+		if (transform.position.x > maxPos) {
 			transform.position = new Vector3 (maxPos,
 			                                  transform.position.y,
 			                                  transform.position.z);

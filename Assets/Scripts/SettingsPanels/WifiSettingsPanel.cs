@@ -11,7 +11,7 @@ public class WifiSettingsPanel : SettingsPanel {
 	}
 	
 	// Update is called once per frame
-	public override void OnGUI () {
-		base.OnGUI ();
+	public override void Draw () {
+		base.Draw ();
 	}
 }

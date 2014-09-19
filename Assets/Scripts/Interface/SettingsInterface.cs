@@ -89,9 +89,6 @@ public class SettingsInterface : Interface {
 		         Settings.lang.settings.ToUpper());
 		
 		Settings.guiSkin.box.fontSize = Mathf.RoundToInt(Screen.width*0.02f);
-
-		if (settingsPanel != null)
-			settingsPanel.OnGUI ();
 	}
 
 	void ShowCatagories() {
@@ -136,6 +133,9 @@ public class SettingsInterface : Interface {
 			GUI.Box (new Rect (Screen.width * (0.07f - introAnim), Screen.height * 0.25f + Screen.height * 0.075f * Settings.settings.IndexOf(s), Screen.width * 0.25f, Screen.width * 0.05f),
 			         s.ToUpper());
 		}
+
+		// Draw Settings
+		settingsPanel.Draw ();
 	}
 	
 	IEnumerator DelayButtonPress() {
