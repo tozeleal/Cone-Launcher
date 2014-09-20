@@ -23,10 +23,11 @@ public class Settings : MonoBehaviour, OuyaSDK.IFetchGamerInfoListener {
 
 	public static List<string> settings = new List<string>();
 
-	// Settings
+	// Settings (yes, the actual user settings)
 	public static Language lang;
 	public static string userName = "'_'";
 	public static Texture wallpaper;
+	public static bool developer;
 
 	IEnumerator Start () {
 		oButton = oButtonPublic;

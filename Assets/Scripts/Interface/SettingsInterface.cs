@@ -47,6 +47,8 @@ public class SettingsInterface : Interface {
 					StartCoroutine( BackToMenu());
 			}
 		} else {
+			settingsPanel.Do();
+
 			if (InputManager.GetButtonDown("a", 0)) {
 				mainCatagories = true;
 				settingsPanel = null;
@@ -63,6 +65,9 @@ public class SettingsInterface : Interface {
 		switch(catagory) {
 			case "wifi":
 				return new WifiSettingsPanel();
+			break;
+			case "developer":
+				return new DeveloperSettingsPanel();
 			break;
 			default:
 				return new SettingsPanel();
@@ -93,15 +98,9 @@ public class SettingsInterface : Interface {
 
 	void ShowCatagories() {
 		// Show Tooltips
-		GUI.Box (new Rect (Screen.width * 0.35f, Screen.height * 0.875f, Screen.width * 0.05f, Screen.width * 0.05f),
-		         Settings.oButton);
-		GUI.Box (new Rect (Screen.width * 0.4f, Screen.height * 0.875f, Screen.width * 0.15f, Screen.width * 0.05f),
-		         Settings.lang.select.ToUpper());
-		
-		GUI.Box (new Rect (Screen.width * 0.55f, Screen.height * 0.875f, Screen.width * 0.05f, Screen.width * 0.05f),
-		         Settings.aButton);
-		GUI.Box (new Rect (Screen.width * 0.6f, Screen.height * 0.875f, Screen.width * 0.06f, Screen.width * 0.05f),
-		         Settings.lang.back.ToUpper());
+		Tooltip(Settings.lang.select, Settings.oButton, 0.25f);
+		Tooltip(Settings.lang.back, Settings.aButton, 0.4f);
+		Tooltip(Settings.lang.androidSettings, Settings.yButton, 0.55f);
 
 		Settings.guiSkin.box.fontSize = Mathf.RoundToInt(Screen.width*0.025f);
 
@@ -111,11 +110,11 @@ public class SettingsInterface : Interface {
 				Settings.guiSkin.box.normal.textColor = new Color (1, 1, 1);
 				selectedCatagory = s;
 			} else {
-				Settings.guiSkin.box.normal.textColor = new Color (1, 1, 1, 0.5f);
+				Settings.guiSkin.box.normal.textColor = new Color (1, 1, 1, 0.65f);
 			}
 			
 			GUI.Box (new Rect (Screen.width * (0.07f - introAnim), Screen.height * 0.25f + Screen.height * 0.075f * Settings.settings.IndexOf(s), Screen.width * 0.25f, Screen.width * 0.05f),
-			         s.ToUpper());
+				s.ToUpper());
 		}
 	}
 
@@ -125,9 +124,9 @@ public class SettingsInterface : Interface {
 		// Show All Catagories
 		foreach(string s in Settings.settings) {
 			if (s == Settings.settings[selectedMenuItem]) {
-				Settings.guiSkin.box.normal.textColor = new Color (1, 1, 1, 0.5f);
+				Settings.guiSkin.box.normal.textColor = new Color (1, 1, 1, 0.6f);
 			} else {
-				Settings.guiSkin.box.normal.textColor = new Color (1, 1, 1, 0.25f);
+				Settings.guiSkin.box.normal.textColor = new Color (1, 1, 1, 0.35f);
 			}
 			
 			GUI.Box (new Rect (Screen.width * (0.07f - introAnim), Screen.height * 0.25f + Screen.height * 0.075f * Settings.settings.IndexOf(s), Screen.width * 0.25f, Screen.width * 0.05f),

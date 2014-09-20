@@ -4,17 +4,7 @@ using System.Collections.Generic;
 
 public class TilesInterface : MonoBehaviour {
 
-	public Transform store;
-	public Transform favorites;
-	public Transform settings;
-	public Transform featured;
-	public Transform develop;
-	public Transform browser;
-	public Transform files;
-	public Transform youtube;
-	public Transform videos;
-
-	public List<string> apps = new List<string>();
+//	public List<string> apps = new List<string>();
 	
 	public static List<List<GameObject>> columns = new List<List<GameObject>>();
 	
@@ -29,33 +19,48 @@ public class TilesInterface : MonoBehaviour {
 	
 	public AudioClip switchSound;
 
+	// Camera Scrolling
+	public float maxDistance = 5;
+	public float lerpSpeed = 0.1f;
+	private float curX;
+	public static bool zoomSelectedItem;
+
+	// Standard Apps
+	public List<GameObject> standardApps = new List<GameObject>();
+	public GameObject developerTile;
+
 	// TODO Real Apps
 	private int stubApps = 17;
 	public GameObject stubApp;
+	
+	private GameObject obj;
 
 	IEnumerator Start() {
-		// Delete All Apps
+		// Recreate the appslist
 		columns.Clear ();
+		columns.Add (new List<GameObject> ());
 
 		// Standard Apps
-		columns.Add (new List<GameObject> (){
-			store.gameObject,
-			favorites.gameObject,
-			settings.gameObject
-		});
+		foreach (GameObject g in standardApps) {
+			if (columns[columns.Count - 1].Count == 3)
+				columns.Add (new List<GameObject> ());
+			
+			Vector3 appPos = new Vector3((columns.Count - 1) * 17 - 29,
+			                             -(columns[columns.Count - 1].Count - 1) * 10,
+			                             0);
 
-		columns.Add (new List<GameObject> (){
-			featured.gameObject,
-			develop.gameObject,
-			browser.gameObject
-		});
+			obj = null;
 
-		columns.Add (new List<GameObject> (){
-			files.gameObject,
-			youtube.gameObject,
-			videos.gameObject
-		});
+			if (g != developerTile)
+				obj = (GameObject) Instantiate(g, appPos, Quaternion.identity);
+			else if (Settings.developer)
+				obj = (GameObject) Instantiate(g, appPos, Quaternion.identity);
 
+			if (obj != null)
+				columns[columns.Count - 1].Add(obj);
+		}
+
+		// Add Stub Apps to list
 		// TODO Real Apps
 		for (int i=0; i<stubApps; i++) {
 			if (columns[columns.Count - 1].Count == 3)
@@ -65,8 +70,8 @@ public class TilesInterface : MonoBehaviour {
 			                             -(columns[columns.Count - 1].Count - 1) * 10,
 			                           	0);
 
-			GameObject o = (GameObject) Instantiate(stubApp, appPos, Quaternion.identity);
-			columns[columns.Count - 1].Add(o);
+			obj = (GameObject) Instantiate(stubApp, appPos, Quaternion.identity);
+			columns[columns.Count - 1].Add(obj);
 		}
 
 		// Set Cursor Position
@@ -89,6 +94,8 @@ public class TilesInterface : MonoBehaviour {
 	}
 
 	void Update () {
+		CameraScroll ();
+
 		if (!axisDown) {
 			if (InputManager.GetAxis("Vertical",0) > 0.5f) {
 				currentRow --;
@@ -150,6 +157,27 @@ public class TilesInterface : MonoBehaviour {
 		}
 	}
 
+	public void CameraScroll() {
+		if (zoomSelectedItem)
+			return;
+		
+		curX = cursor.transform.position.x;
+		if (transform.position.x < 0)
+			curX = Mathf.Max (curX, 9);
+		
+		if (Mathf.Abs(curX - transform.position.x) > maxDistance) {
+			transform.position += new Vector3((curX - transform.position.x) * lerpSpeed * Time.deltaTime,0,0);
+		}
+		
+		float maxPos = columns [columns.Count - 1] [0].transform.position.x - 28;
+		
+		if (transform.position.x > maxPos) {
+			transform.position = new Vector3 (maxPos,
+			                                  transform.position.y,
+			                                  transform.position.z);
+		}
+	}
+
 	IEnumerator DelayButtonPress() {
 		timer = 0.15f;
 		axisDown = true;
@@ -177,5 +205,19 @@ public class TilesInterface : MonoBehaviour {
 		StartCoroutine( ZoomAnimation.Zoom (cursor));
 
 		LauncherInterface.selection = cursor.GetComponent<Action>().action;
+	}
+
+	public static IEnumerator ScrollAway() {
+		zoomSelectedItem = true;
+		
+		while (Camera.main.transform.position.x > -90) {
+			Camera.main.transform.position = Vector3.Lerp (Camera.main.transform.position,
+			                                               new Vector3(-125, 0, Camera.main.transform.position.z),
+			                                               3 * Time.deltaTime);
+			
+			yield return null;
+		}
+		
+		zoomSelectedItem = false;
 	}
 }

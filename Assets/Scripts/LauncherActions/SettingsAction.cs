@@ -4,12 +4,12 @@ using System.Collections;
 public class SettingsAction : Action {
 
 	public override void OnO () {
-		StartCoroutine( LauncherInterface.Zoom ());
+		StartCoroutine( TilesInterface.ScrollAway());
 		StartCoroutine (WaitTransitionO ());
 	}
 
 	IEnumerator WaitTransitionO() {
-		while (LauncherInterface.zoomSelectedItem) {
+		while (TilesInterface.zoomSelectedItem) {
 			yield return null;	
 		}
 

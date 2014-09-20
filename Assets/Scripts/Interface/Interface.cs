@@ -23,6 +23,14 @@ public class Interface : MonoBehaviour {
 		TopBar ();
 	}
 
+	public static void Tooltip(string s, Texture t, float x)  {
+		Settings.guiSkin.box.fontSize = Mathf.RoundToInt(Screen.width*0.02f);
+		GUI.Box (new Rect (Screen.width * x, Screen.height * 0.875f, Screen.width * 0.05f, Screen.width * 0.05f),
+		         t);
+		GUI.Box (new Rect (Screen.width * (x + 0.05f), Screen.height * 0.875f, Screen.width * (s.Length/60.0f), Screen.width * 0.05f),
+		         s.ToUpper());
+	}
+
 	public static void TopBar() {
 		Settings.guiSkin.box.alignment = TextAnchor.MiddleLeft;
 		Settings.guiSkin.box.normal.textColor = new Color (1, 1, 1, 0.75f);

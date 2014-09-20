@@ -9,7 +9,11 @@ public class SettingsPanel : MonoBehaviour {
 			return "Test";
 		}
 	}
-	
+
+	public virtual void Do () {
+		// Nothing
+	}
+
 	// Update is called once per frame
 	public virtual void Draw () {
 		Settings.guiSkin.box.normal.textColor = new Color (1, 1, 1, 0.75f);	

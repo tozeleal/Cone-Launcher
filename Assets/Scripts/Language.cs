@@ -135,4 +135,11 @@ public class Language {
 			return "select";
 		}
 	}
+
+	public virtual string androidSettings
+	{
+		get {
+			return "android settings";
+		}
+	}
 }
