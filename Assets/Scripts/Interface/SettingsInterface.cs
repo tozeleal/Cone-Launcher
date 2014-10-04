@@ -3,8 +3,8 @@ using System.Collections;
 
 public class SettingsInterface : Interface {
 	private int selectedMenuItem = 0;
-	private bool axisDown = false;
-	private float timer;
+
+	public static bool axisDown = false;
 	private bool mainCatagories = true;
 	private SettingsPanel settingsPanel = null;
 
@@ -31,12 +31,12 @@ public class SettingsInterface : Interface {
 			if (!axisDown) {
 				if (InputManager.GetAxis ("Vertical", 0) > 0.5f) {
 					if (selectedMenuItem > 0) {
-						selectedMenuItem -= 1;
+						selectedMenuItem --;
 						StartCoroutine(DelayButtonPress());
 					}
 				} else if (InputManager.GetAxis ("Vertical", 0) < -0.5f) {
 					if (selectedMenuItem < Settings.settings.Count - 1) {
-						selectedMenuItem += 1;
+						selectedMenuItem ++;
 						StartCoroutine(DelayButtonPress());
 					}
 				}
@@ -47,11 +47,11 @@ public class SettingsInterface : Interface {
 					StartCoroutine( BackToMenu());
 			}
 		} else {
-			settingsPanel.Do();
-
 			if (InputManager.GetButtonDown("a", 0)) {
 				mainCatagories = true;
 				settingsPanel = null;
+			} else {
+				settingsPanel.Do();
 			}
 		}
 
@@ -65,6 +65,9 @@ public class SettingsInterface : Interface {
 		switch(catagory) {
 			case "wifi":
 				return new WifiSettingsPanel();
+			break;
+			case "language":
+				return new LanguageSettingsPanel();
 			break;
 			case "developer":
 				return new DeveloperSettingsPanel();
@@ -90,7 +93,7 @@ public class SettingsInterface : Interface {
 
 		Settings.guiSkin.box.fontSize = Mathf.RoundToInt(Screen.width*0.045f);
 		
-		GUI.Box (new Rect (Screen.width * (0.06f - introAnim), Screen.height * 0.15f, Screen.width * 0.3f, Screen.width * 0.05f),
+		GUI.Box (new Rect (Screen.width * (0.06f - introAnim), Screen.height * 0.15f, Screen.width * 0.4f, Screen.width * 0.05f),
 		         Settings.lang.settings.ToUpper());
 		
 		Settings.guiSkin.box.fontSize = Mathf.RoundToInt(Screen.width*0.02f);
@@ -136,13 +139,11 @@ public class SettingsInterface : Interface {
 		// Draw Settings
 		settingsPanel.Draw ();
 	}
-	
-	IEnumerator DelayButtonPress() {
-		timer = 0.1f;
+
+	public IEnumerator DelayButtonPress() {
 		axisDown = true;
 		
-		while (timer > 0) {
-			timer -= Time.deltaTime;
+		for (float i = 0; i <= 0.1f; i += Time.deltaTime) {
 			
 			if (!axisDown)
 				yield break;

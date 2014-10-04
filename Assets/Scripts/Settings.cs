@@ -56,7 +56,7 @@ public class Settings : MonoBehaviour, OuyaSDK.IFetchGamerInfoListener {
 		OuyaSDK.fetchGamerInfo();
 	}
 
-	public Language SetLanguage(string language) {
+	public static Language SetLanguage(string language) {
 		switch (language.ToLower()) {
 			case "dutch":
 				return new LanguageDutch();

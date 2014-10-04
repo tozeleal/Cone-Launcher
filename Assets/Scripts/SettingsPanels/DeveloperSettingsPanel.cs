@@ -26,7 +26,7 @@ public class DeveloperSettingsPanel : SettingsPanel {
 		Settings.guiSkin.box.fontSize = Mathf.RoundToInt(Screen.width*0.025f);
 		Settings.guiSkin.box.normal.textColor = new Color (1, 1, 1);
 
-		GUI.Box (new Rect (Screen.width * 0.36f, Screen.height * 0.25f, Screen.width * 0.5f, Screen.width * 0.05f),
+		GUI.Box (new Rect (Screen.width * 0.41f, Screen.height * 0.25f, Screen.width * 0.5f, Screen.width * 0.05f),
 		         (Settings.developer) ? "DEVELOPER OPTIONS: ON" : "DEVELOPER OPTIONS: OFF");
 
 		// Show Tooltips
