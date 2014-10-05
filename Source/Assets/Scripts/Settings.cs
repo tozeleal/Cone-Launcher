@@ -64,6 +64,18 @@ public class Settings : MonoBehaviour, OuyaSDK.IFetchGamerInfoListener {
 			case "french":
 				return new LanguageFrench();
 			break;
+			case "german":
+				return new LanguageGerman();
+			break;
+			case "italian":
+				return new LanguageItalian();
+			break;
+			case "portuguese":
+				return new LanguagePortuguese();
+			break;
+			case "spanish":
+				return new LanguageSpanish();
+			break;
 			default:
 				return new Language();
 			break;

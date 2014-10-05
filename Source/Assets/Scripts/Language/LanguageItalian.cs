@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LanguageFrench : Language {
+public class LanguageItalian : Language {
 
 	// Translation info
 	// Change the <return info> to what it should be in your language
 	// Do this for lines like:
 	// return "<return info>";
 	
-	// Example
+	// Example (French)
 	
 	// return "hi, ";
 	// return "salut, ";
@@ -16,14 +16,14 @@ public class LanguageFrench : Language {
 	public override string hello
 	{
 		get {
-			return "salut, ";
+			return "hi, ";
 		}
 	}
 
 	public override string settings
 	{
 		get {
-			return "paramètres";
+			return "settings";
 		}
 	}
 
@@ -33,118 +33,123 @@ public class LanguageFrench : Language {
 			return "wifi";
 		}
 	}
-	
+
 	public override string bluetooth
 	{
 		get {
 			return "bluetooth";
 		}
 	}
-	
+
 	public override string screen
 	{
 		get {
-			return "ecran";
+			return "screen";
 		}
 	}
-	
+
 	public override string wallpaper
 	{
 		get {
-			return "papier peint";
+			return "wallpaper";
 		}
 	}
-	
+
 	public override string account
 	{
 		get {
-			return "compte";
+			return "account";
 		}
 	}
-	
+
 	public override string language
 	{
 		get {
 			return "language";
 		}
 	}
-	
+
 	public override string developer
 	{
 		get {
-			return "développeur";
+			return "developer";
 		}
 	}
-	
+
 	public override string updates
 	{
 		get {
-			return "des mises à jour";
+			return "updates";
 		}
 	}
 
-	
 	public override string connect
 	{
 		get {
-			return "connecter";
+			return "connect";
 		}
 	}
-
-	// TODO Translate These
+	
 	public override string rescan
 	{
 		get {
-			return "opniew scannen";
-		}
-	}
-	
-	public override string back
-	{
-		get {
-			return "terug";
-		}
-	}
-	
-	public override string options
-	{
-		get {
-			return "opties";
-		}
-	}
-	
-	public override string open
-	{
-		get {
-			return "ouvrir";
-		}
-	}
-	
-	public override string rate
-	{
-		get {
-			return "évaluer";
-		}
-	}
-	
-	public override string unstall
-	{
-		get {
-			return "enlever";
-		}
-	}
-	
-	public override string more
-	{
-		get {
-			return "plus";
+			return "rescan";
 		}
 	}
 
-	public virtual string select
+	public override string back
 	{
 		get {
-			return "sélectionner";
+			return "back";
+		}
+	}
+
+	public override string options
+	{
+		get {
+			return "options";
+		}
+	}
+
+	public override string open
+	{
+		get {
+			return "open";
+		}
+	}
+
+	public override string rate
+	{
+		get {
+			return "rate";
+		}
+	}
+
+	public override string unstall
+	{
+		get {
+			return "unstall";
+		}
+	}
+
+	public override string more
+	{
+		get {
+			return "more";
+		}
+	}
+
+	public override string select
+	{
+		get {
+			return "select";
+		}
+	}
+
+	public override string androidSettings
+	{
+		get {
+			return "android settings";
 		}
 	}
 }
