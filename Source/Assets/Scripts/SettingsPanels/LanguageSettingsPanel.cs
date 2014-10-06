@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class LanguageSettingsPanel : SettingsPanel {
 
-	public List<string> languages = new List<string>(){"english", "french", "dutch"};
+	public List<string> languages = new List<string>(){"english", "french", "dutch", "german", "portuguese", "spanish", "italian"};
 	public int selectedLanguage;
 
 	public override string Title
