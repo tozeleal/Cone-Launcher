@@ -16,14 +16,14 @@ public class LanguagePortuguese : Language {
 	public override string hello
 	{
 		get {
-			return "hi, ";
+			return "olá, ";
 		}
 	}
 
 	public override string settings
 	{
 		get {
-			return "settings";
+			return "Definições";
 		}
 	}
 
@@ -44,35 +44,35 @@ public class LanguagePortuguese : Language {
 	public override string screen
 	{
 		get {
-			return "screen";
+			return "ecrã";
 		}
 	}
 
 	public override string wallpaper
 	{
 		get {
-			return "wallpaper";
+			return "papel de parede";
 		}
 	}
 
 	public override string account
 	{
 		get {
-			return "account";
+			return "perfil";
 		}
 	}
 
 	public override string language
 	{
 		get {
-			return "language";
+			return "lingua";
 		}
 	}
 
 	public override string developer
 	{
 		get {
-			return "developer";
+			return "desenvolvedor";
 		}
 	}
 
@@ -86,70 +86,70 @@ public class LanguagePortuguese : Language {
 	public override string connect
 	{
 		get {
-			return "connect";
+			return "ligar";
 		}
 	}
 	
 	public override string rescan
 	{
 		get {
-			return "rescan";
+			return "re scanear";
 		}
 	}
 
 	public override string back
 	{
 		get {
-			return "back";
+			return "voltar";
 		}
 	}
 
 	public override string options
 	{
 		get {
-			return "options";
+			return "opções";
 		}
 	}
 
 	public override string open
 	{
 		get {
-			return "open";
+			return "abrir";
 		}
 	}
 
 	public override string rate
 	{
 		get {
-			return "rate";
+			return "avaliar";
 		}
 	}
 
 	public override string unstall
 	{
 		get {
-			return "unstall";
+			return "desinstalar";
 		}
 	}
 
 	public override string more
 	{
 		get {
-			return "more";
+			return "mais";
 		}
 	}
 
 	public override string select
 	{
 		get {
-			return "select";
+			return "selecionar";
 		}
 	}
 
 	public override string androidSettings
 	{
 		get {
-			return "android settings";
+			return "definições do android";
 		}
 	}
 }
